@@ -1,0 +1,56 @@
+1484584457a:1:{s:22:"pages-home/feature.htm";a:6:{s:8:"fileName";s:22:"pages-home/feature.htm";s:7:"content";s:972:"==
+<div class="center">
+    <div class="lt-row row">
+        <a href="">
+            <div class="lt-col col m3 s12">
+                <i class="large pe-7s-portfolio primary-color-text"></i>
+                <h5>Документы</h5>
+            </div>
+        </a>
+        <a href="{{ 'community'|page }}">
+            <div class="lt-col col m3 s12">
+              <i class="large pe-7s-chat primary-color-text"></i>
+              <h5>Общение</h5>
+            </div>
+        </a>
+        <a href="">
+            <div class="lt-col col m3 s12">
+              <i class="large pe-7s-attention primary-color-text"></i>
+              <h5>Трекер проблем</h5>
+            </div>
+        </a>
+        <a href="{{ 'contact'|page }}">
+            <div class="lt-col col m3 s12">
+              <i class="large pe-7s-map-2 primary-color-text"></i>
+              <h5>Контакты</h5>
+            </div>
+        </a>
+  </div>
+</div>";s:5:"mtime";i:1484516900;s:6:"markup";s:968:"<div class="center">
+    <div class="lt-row row">
+        <a href="">
+            <div class="lt-col col m3 s12">
+                <i class="large pe-7s-portfolio primary-color-text"></i>
+                <h5>Документы</h5>
+            </div>
+        </a>
+        <a href="{{ 'community'|page }}">
+            <div class="lt-col col m3 s12">
+              <i class="large pe-7s-chat primary-color-text"></i>
+              <h5>Общение</h5>
+            </div>
+        </a>
+        <a href="">
+            <div class="lt-col col m3 s12">
+              <i class="large pe-7s-attention primary-color-text"></i>
+              <h5>Трекер проблем</h5>
+            </div>
+        </a>
+        <a href="{{ 'contact'|page }}">
+            <div class="lt-col col m3 s12">
+              <i class="large pe-7s-map-2 primary-color-text"></i>
+              <h5>Контакты</h5>
+            </div>
+        </a>
+  </div>
+</div>";s:4:"code";N;s:17:"_PARSER_ERROR_INI";s:0:"";}}

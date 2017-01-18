@@ -1,0 +1,1344 @@
+-- MySQL dump 10.10
+--
+-- Host: localhost    Database: october
+-- ------------------------------------------------------
+-- Server version	5.5.25
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES cp1251 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ahmadfatoni_apigenerator_data`
+--
+
+DROP TABLE IF EXISTS `ahmadfatoni_apigenerator_data`;
+CREATE TABLE `ahmadfatoni_apigenerator_data` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `endpoint` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `custom_format` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `ahmadfatoni_apigenerator_data`
+--
+
+
+/*!40000 ALTER TABLE `ahmadfatoni_apigenerator_data` DISABLE KEYS */;
+LOCK TABLES `ahmadfatoni_apigenerator_data` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `ahmadfatoni_apigenerator_data` ENABLE KEYS */;
+
+--
+-- Table structure for table `backend_access_log`
+--
+
+DROP TABLE IF EXISTS `backend_access_log`;
+CREATE TABLE `backend_access_log` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `ip_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `backend_access_log`
+--
+
+
+/*!40000 ALTER TABLE `backend_access_log` DISABLE KEYS */;
+LOCK TABLES `backend_access_log` WRITE;
+INSERT INTO `backend_access_log` VALUES (1,1,'127.0.0.1','2017-01-14 09:05:48','2017-01-14 09:05:48'),(2,1,'127.0.0.1','2017-01-14 09:05:52','2017-01-14 09:05:52');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `backend_access_log` ENABLE KEYS */;
+
+--
+-- Table structure for table `backend_user_groups`
+--
+
+DROP TABLE IF EXISTS `backend_user_groups`;
+CREATE TABLE `backend_user_groups` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `permissions` text COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `is_new_user_default` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_unique` (`name`),
+  KEY `code_index` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `backend_user_groups`
+--
+
+
+/*!40000 ALTER TABLE `backend_user_groups` DISABLE KEYS */;
+LOCK TABLES `backend_user_groups` WRITE;
+INSERT INTO `backend_user_groups` VALUES (1,'Owners',NULL,'2017-01-14 09:04:53','2017-01-14 09:04:53','owners','Default group for website owners.',0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `backend_user_groups` ENABLE KEYS */;
+
+--
+-- Table structure for table `backend_user_preferences`
+--
+
+DROP TABLE IF EXISTS `backend_user_preferences`;
+CREATE TABLE `backend_user_preferences` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `namespace` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `group` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `item` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `value` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `user_item_index` (`user_id`,`namespace`,`group`,`item`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `backend_user_preferences`
+--
+
+
+/*!40000 ALTER TABLE `backend_user_preferences` DISABLE KEYS */;
+LOCK TABLES `backend_user_preferences` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `backend_user_preferences` ENABLE KEYS */;
+
+--
+-- Table structure for table `backend_user_throttle`
+--
+
+DROP TABLE IF EXISTS `backend_user_throttle`;
+CREATE TABLE `backend_user_throttle` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `ip_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `attempts` int(11) NOT NULL DEFAULT '0',
+  `last_attempt_at` timestamp NULL DEFAULT NULL,
+  `is_suspended` tinyint(1) NOT NULL DEFAULT '0',
+  `suspended_at` timestamp NULL DEFAULT NULL,
+  `is_banned` tinyint(1) NOT NULL DEFAULT '0',
+  `banned_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `backend_user_throttle_user_id_index` (`user_id`),
+  KEY `backend_user_throttle_ip_address_index` (`ip_address`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `backend_user_throttle`
+--
+
+
+/*!40000 ALTER TABLE `backend_user_throttle` DISABLE KEYS */;
+LOCK TABLES `backend_user_throttle` WRITE;
+INSERT INTO `backend_user_throttle` VALUES (1,1,'127.0.0.1',0,NULL,0,NULL,0,NULL);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `backend_user_throttle` ENABLE KEYS */;
+
+--
+-- Table structure for table `backend_users`
+--
+
+DROP TABLE IF EXISTS `backend_users`;
+CREATE TABLE `backend_users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `activation_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `persist_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `reset_password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `permissions` text COLLATE utf8_unicode_ci,
+  `is_activated` tinyint(1) NOT NULL DEFAULT '0',
+  `activated_at` timestamp NULL DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `login_unique` (`login`),
+  UNIQUE KEY `email_unique` (`email`),
+  KEY `act_code_index` (`activation_code`),
+  KEY `reset_code_index` (`reset_password_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `backend_users`
+--
+
+
+/*!40000 ALTER TABLE `backend_users` DISABLE KEYS */;
+LOCK TABLES `backend_users` WRITE;
+INSERT INTO `backend_users` VALUES (1,'Vladimir','Gerasimov','vgerasim','gerkarasta@gmail.com','$2y$10$6n28ZN2OvaE7xgmkJivBF.2pDFib.XClVJX7rH/zZWoGXd35j0G/i',NULL,'$2y$10$0o3rcj7pMIA22cbdT9n2deJtc5OsVrAthyZL/8u/j8ledQuRSM.Ce',NULL,'',1,NULL,'2017-01-14 09:05:51','2017-01-14 09:04:53','2017-01-14 09:05:51',1);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `backend_users` ENABLE KEYS */;
+
+--
+-- Table structure for table `backend_users_groups`
+--
+
+DROP TABLE IF EXISTS `backend_users_groups`;
+CREATE TABLE `backend_users_groups` (
+  `user_id` int(10) unsigned NOT NULL,
+  `user_group_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`user_group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `backend_users_groups`
+--
+
+
+/*!40000 ALTER TABLE `backend_users_groups` DISABLE KEYS */;
+LOCK TABLES `backend_users_groups` WRITE;
+INSERT INTO `backend_users_groups` VALUES (1,1);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `backend_users_groups` ENABLE KEYS */;
+
+--
+-- Table structure for table `cache`
+--
+
+DROP TABLE IF EXISTS `cache`;
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `expiration` int(11) NOT NULL,
+  UNIQUE KEY `cache_key_unique` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `cache`
+--
+
+
+/*!40000 ALTER TABLE `cache` DISABLE KEYS */;
+LOCK TABLES `cache` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `cache` ENABLE KEYS */;
+
+--
+-- Table structure for table `clake_userextended_comments`
+--
+
+DROP TABLE IF EXISTS `clake_userextended_comments`;
+CREATE TABLE `clake_userextended_comments` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `author_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `clake_userextended_comments`
+--
+
+
+/*!40000 ALTER TABLE `clake_userextended_comments` DISABLE KEYS */;
+LOCK TABLES `clake_userextended_comments` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `clake_userextended_comments` ENABLE KEYS */;
+
+--
+-- Table structure for table `clake_userextended_friends`
+--
+
+DROP TABLE IF EXISTS `clake_userextended_friends`;
+CREATE TABLE `clake_userextended_friends` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_that_sent_request` int(11) NOT NULL,
+  `user_that_accepted_request` int(11) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `accepted` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `clake_userextended_friends`
+--
+
+
+/*!40000 ALTER TABLE `clake_userextended_friends` DISABLE KEYS */;
+LOCK TABLES `clake_userextended_friends` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `clake_userextended_friends` ENABLE KEYS */;
+
+--
+-- Table structure for table `clake_userextended_roles`
+--
+
+DROP TABLE IF EXISTS `clake_userextended_roles`;
+CREATE TABLE `clake_userextended_roles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT '1',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `clake_userextended_roles`
+--
+
+
+/*!40000 ALTER TABLE `clake_userextended_roles` DISABLE KEYS */;
+LOCK TABLES `clake_userextended_roles` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `clake_userextended_roles` ENABLE KEYS */;
+
+--
+-- Table structure for table `clake_userextended_timezones`
+--
+
+DROP TABLE IF EXISTS `clake_userextended_timezones`;
+CREATE TABLE `clake_userextended_timezones` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `abbr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `utc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `offset` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `count` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `clake_userextended_timezones`
+--
+
+
+/*!40000 ALTER TABLE `clake_userextended_timezones` DISABLE KEYS */;
+LOCK TABLES `clake_userextended_timezones` WRITE;
+INSERT INTO `clake_userextended_timezones` VALUES (1,'UTC','Coordinated Universal Time','UTC','0',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(2,'BIT','Baker Island Time','UTC-12','-12',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(3,'NUT','Niue Time','UTC-11','-11',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(4,'SST','Samoa Standard Time','UTC-11','-11',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(5,'CKT','Cook Island Time','UTC-10','-10',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(6,'HAST','Hawaii-Aleutian Standard Time','UTC-10','-10',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(7,'HST','Hawaii Standard Time','UTC-10','-10',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(8,'TAHT','Tahiti Time','UTC-10','-10',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(9,'MART','Marquesas Islands Time','UTC-09:30','-09:30',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(10,'MIT','Marquesas Islands Time','UTC-09:30','-09:30',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(11,'AKST','Alaska Standard Time','UTC-09','-9',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(12,'GAMT','Gambier Islands','UTC-09','-9',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(13,'GIT','Gambier Island Time','UTC-09','-9',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(14,'HADT','Hawaii-Aleutian Daylight Time','UTC-09','-9',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(15,'AKDT','Alaska Daylight Time','UTC-08','-8',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(16,'CIST','Clipperton Island Standard Time','UTC-08','-8',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(17,'PST','Pacific Standard Time (North America)','UTC-08','-8',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(18,'MST','Mountain Standard Time (North America)','UTC-07','-7',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(19,'PDT','Pacific Daylight Time (North America)','UTC-07','-7',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(20,'CST','Central Standard Time (North America)','UTC-06','-6',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(21,'EAST','Easter Island Standard Time','UTC-06','-6',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(22,'GALT','Galapagos Time','UTC-06','-6',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(23,'MDT','Mountain Daylight Time (North America)','UTC-06','-6',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(24,'CDT','Central Daylight Time (North America)','UTC-05','-5',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(25,'COT','Colombia Time','UTC-05','-5',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(26,'CST','Cuba Standard Time','UTC-05','-5',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(27,'EASST','Easter Island Standard Summer Time','UTC-05','-5',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(28,'ECT','Ecuador Time','UTC-05','-5',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(29,'EST','Eastern Standard Time (North America)','UTC-05','-5',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(30,'PET','Peru Time','UTC-05','-5',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(31,'VET','Venezuelan Standard Time','UTC-04:30','-04:30',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(32,'AMT','Amazon Time (Brazil)[2]','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(33,'AST','Atlantic Standard Time','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(34,'BOT','Bolivia Time','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(35,'CDT','Cuba Daylight Time[3]','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(36,'CLT','Chile Standard Time','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(37,'COST','Colombia Summer Time','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(38,'ECT','Eastern Caribbean Time (does not recognise DST)','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(39,'EDT','Eastern Daylight Time (North America)','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(40,'FKT','Falkland Islands Time','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(41,'GYT','Guyana Time','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(42,'PYT','Paraguay Time (Brazil)[7]','UTC-04','-4',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(43,'NST','Newfoundland Standard Time','UTC-03:30','-03:30',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(44,'NT','Newfoundland Time','UTC-03:30','-03:30',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(45,'ADT','Atlantic Daylight Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(46,'AMST','Amazon Summer Time (Brazil)[1]','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(47,'ART','Argentina Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(48,'BRT','Brasilia Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(49,'CLST','Chile Summer Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(50,'FKST','Falkland Islands Standard Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(51,'FKST','Falkland Islands Summer Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(52,'GFT','French Guiana Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(53,'PMST','Saint Pierre and Miquelon Standard Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(54,'PYST','Paraguay Summer Time (Brazil)','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(55,'ROTT','Rothera Research Station Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(56,'SRT','Suriname Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(57,'UYT','Uruguay Standard Time','UTC-03','-3',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(58,'NDT','Newfoundland Daylight Time','UTC-02:30','-02:30',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(59,'FNT','Fernando de Noronha Time','UTC-02','-2',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(60,'GST','South Georgia and the South Sandwich Islands','UTC-02','-2',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(61,'PMDT','Saint Pierre and Miquelon Daylight time','UTC-02','-2',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(62,'UYST','Uruguay Summer Time','UTC-02','-2',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(63,'AZOST','Azores Standard Time','UTC-01','-1',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(64,'CVT','Cape Verde Time','UTC-01','-1',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(65,'EGT','Eastern Greenland Time','UTC-01','-1',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(66,'GMT','Greenwich Mean Time','UTC','0',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(67,'UCT','Coordinated Universal Time','UTC','0',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(68,'WET','Western European Time','UTC','0',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(69,'Z','Zulu Time (Coordinated Universal Time)','UTC','0',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(70,'EGST','Eastern Greenland Summer Time','UTC+00','0',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(71,'BST','British Summer Time (British Standard Time from Feb 1968 to Oct 1971)','UTC+01','1',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(72,'CET','Central European Time','UTC+01','1',0,NULL,'2017-01-14 10:10:56','2017-01-14 10:10:56'),(73,'DFT','AIX specific equivalent of Central European Time','UTC+01','1',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(74,'IST','Irish Standard Time','UTC+01','1',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(75,'MET','Middle European Time Same zone as CET','UTC+01','1',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(76,'WAT','West Africa Time','UTC+01','1',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(77,'WEDT','Western European Daylight Time','UTC+01','1',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(78,'WEST','Western European Summer Time','UTC+01','1',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(79,'CAT','Central Africa Time','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(80,'CEDT','Central European Daylight Time','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(81,'CEST','Central European Summer Time (Cf. HAEC)','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(82,'EET','Eastern European Time','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(83,'HAEC','Heure Avanc?e d\'Europe Centrale francised name for CEST','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(84,'IST','Israel Standard Time','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(85,'MEST','Middle European Saving Time Same zone as CEST','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(86,'SAST','South African Standard Time','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(87,'WAST','West Africa Summer Time','UTC+02','2',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(88,'AST','Arabia Standard Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(89,'EAT','East Africa Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(90,'EEDT','Eastern European Daylight Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(91,'EEST','Eastern European Summer Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(92,'FET','Further-eastern European Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(93,'IDT','Israel Daylight Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(94,'IOT','Indian Ocean Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(95,'SYOT','Showa Station Time','UTC+03','3',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(96,'IRST','Iran Standard Time','UTC+03:30','+03:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(97,'AMT','Armenia Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(98,'AZT','Azerbaijan Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(99,'GET','Georgia Standard Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(100,'GST','Gulf Standard Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(101,'MSK','Moscow Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(102,'MUT','Mauritius Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(103,'RET','R?union Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(104,'SAMT','Samara Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(105,'SCT','Seychelles Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(106,'VOLT','Volgograd Time','UTC+04','4',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(107,'AFT','Afghanistan Time','UTC+04:30','+04:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(108,'AMST','Armenia Summer Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(109,'HMT','Heard and McDonald Islands Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(110,'MAWT','Mawson Station Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(111,'MVT','Maldives Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(112,'ORAT','Oral Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(113,'PKT','Pakistan Standard Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(114,'TFT','Indian/Kerguelen','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(115,'TJT','Tajikistan Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(116,'TMT','Turkmenistan Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(117,'UZT','Uzbekistan Time','UTC+05','5',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(118,'IST','Indian Standard Time','UTC+05:30','+05:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(119,'SLST','Sri Lanka Time','UTC+05:30','+05:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(120,'NPT','Nepal Time','UTC+05:45','+05:45',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(121,'BIOT','British Indian Ocean Time','UTC+06','6',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(122,'BST','Bangladesh Standard Time','UTC+06','6',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(123,'BTT','Bhutan Time','UTC+06','6',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(124,'KGT','Kyrgyzstan time','UTC+06','6',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(125,'VOST','Vostok Station Time','UTC+06','6',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(126,'YEKT','Yekaterinburg Time','UTC+06','6',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(127,'CCT','Cocos Islands Time','UTC+06:30','+06:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(128,'MMT','Myanmar Time','UTC+06:30','+06:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(129,'MST','Myanmar Standard Time','UTC+06:30','+06:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(130,'CXT','Christmas Island Time','UTC+07','7',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(131,'DAVT','Davis Time','UTC+07','7',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(132,'HOVT','Khovd Time','UTC+07','7',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(133,'ICT','Indochina Time','UTC+07','7',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(134,'KRAT','Krasnoyarsk Time','UTC+07','7',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(135,'OMST','Omsk Time','UTC+07','7',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(136,'THA','Thailand Standard Time','UTC+07','7',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(137,'ACT','ASEAN Common Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(138,'AWST','Australian Western Standard Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(139,'BDT','Brunei Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(140,'CHOT','Choibalsan','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(141,'CIT','Central Indonesia Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(142,'CST','China Standard Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(143,'CT','China time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(144,'HKT','Hong Kong Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(145,'IRDT','Iran Daylight Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(146,'MST','Malaysia Standard Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(147,'MYT','Malaysia Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(148,'PHT','Philippine Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(149,'SGT','Singapore Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(150,'SST','Singapore Standard Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(151,'ULAT','Ulaanbaatar Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(152,'WST','Western Standard Time','UTC+08','8',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(153,'CWST','Central Western Standard Time (Australia)','UTC+08:45','+08:45',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(154,'AWDT','Australian Western Daylight Time','UTC+09','9',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(155,'EIT','Eastern Indonesian Time','UTC+09','9',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(156,'IRKT','Irkutsk Time','UTC+09','9',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(157,'JST','Japan Standard Time','UTC+09','9',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(158,'KST','Korea Standard Time','UTC+09','9',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(159,'TLT','Timor Leste Time','UTC+09','9',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(160,'ACST','Australian Central Standard Time','UTC+09:30','+09:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(161,'CST','Central Standard Time (Australia)','UTC+09:30','+09:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(162,'AEST','Australian Eastern Standard Time','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(163,'ChST','Chamorro Standard Time','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(164,'CHUT','Chuuk Time','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(165,'DDUT','Dumont d\'Urville Time','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(166,'EST','Eastern Standard Time (Australia)','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(167,'PGT','Papua New Guinea Time','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(168,'VLAT','Vladivostok Time','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(169,'YAKT','Yakutsk Time','UTC+10','10',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(170,'ACDT','Australian Central Daylight Time','UTC+10:30','+10:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(171,'CST','Central Summer Time (Australia)','UTC+10:30','+10:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(172,'LHST','Lord Howe Standard Time','UTC+10:30','+10:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(173,'AEDT','Australian Eastern Daylight Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(174,'KOST','Kosrae Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(175,'LHST','Lord Howe Summer Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(176,'MIST','Macquarie Island Station Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(177,'NCT','New Caledonia Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(178,'PONT','Pohnpei Standard Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(179,'SAKT','Sakhalin Island time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(180,'SBT','Solomon Islands Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(181,'VUT','Vanuatu Time','UTC+11','11',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(182,'NFT','Norfolk Time','UTC+11:30','+11:30',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(183,'FJT','Fiji Time','UTC+12','12',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(184,'GILT','Gilbert Island Time','UTC+12','12',0,NULL,'2017-01-14 10:10:57','2017-01-14 10:10:57'),(185,'MAGT','Magadan Time','UTC+12','12',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(186,'MHT','Marshall Islands','UTC+12','12',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(187,'NZST','New Zealand Standard Time','UTC+12','12',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(188,'PETT','Kamchatka Time','UTC+12','12',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(189,'TVT','Tuvalu Time','UTC+12','12',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(190,'WAKT','Wake Island Time','UTC+12','12',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(191,'CHAST','Chatham Standard Time','UTC+12:45','+12:45',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(192,'NZDT','New Zealand Daylight Time','UTC+13','13',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(193,'PHOT','Phoenix Island Time','UTC+13','13',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(194,'TOT','Tonga Time','UTC+13','13',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(195,'CHADT','Chatham Daylight Time','UTC+13:45','+13:45',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(196,'LINT','Line Islands Time','UTC+14','14',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58'),(197,'TKT','Tokelau Time','UTC+14','14',0,NULL,'2017-01-14 10:10:58','2017-01-14 10:10:58');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `clake_userextended_timezones` ENABLE KEYS */;
+
+--
+-- Table structure for table `cms_theme_data`
+--
+
+DROP TABLE IF EXISTS `cms_theme_data`;
+CREATE TABLE `cms_theme_data` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `theme` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `data` mediumtext COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cms_theme_data_theme_index` (`theme`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `cms_theme_data`
+--
+
+
+/*!40000 ALTER TABLE `cms_theme_data` DISABLE KEYS */;
+LOCK TABLES `cms_theme_data` WRITE;
+INSERT INTO `cms_theme_data` VALUES (1,'laratify-octobercms-octaskin','{\"website_name\":\"Octaskin\",\"website_author\":\"Laratify\",\"website_url\":\"http:\\/\\/demo.laratify.dev\\/octobercms\\/?theme=octaskin\",\"description\":\"Free Modern and Clean OctoberCMS Theme based on Materialize CSS.\",\"keywords\":\"octaskin,laratify,october,octobercms,themes,templates,free octobercms themes\",\"load_google_fonts\":\"1\",\"google_font_family\":\"Roboto+Slab:300,400,700|Raleway:300,300i,400,400i,700,700i\",\"load_fontawesome\":\"1\",\"load_material_icons\":\"1\",\"load_stroke7_icons\":\"1\",\"load_jQuery\":\"1\",\"jQuery_version\":\"2.2.4\",\"primary_color\":\"#ff5722\",\"secondary_color\":\"#2196f3\",\"navigation_background_color\":\"#ff5722\",\"navigation_text_color\":\"#ffffff\",\"slideshow_background_color\":\"#455a64\",\"slideshow_text_color\":\"#ffffff\",\"header_background_color\":\"#37474f\",\"header_text_color\":\"#ffffff\",\"feature_background_color\":\"#ffffff\",\"feature_text_color\":\"#686868\",\"utility_background_color\":\"#eceff1\",\"utility_text_color\":\"#686868\",\"mainpage_background_color\":\"#ffffff\",\"mainpage_text_color\":\"#686868\",\"bottom_background_color\":\"#eceff1\",\"bottom_text_color\":\"#686868\",\"extension_background_color\":\"#ffffff\",\"extension_text_color\":\"#686868\",\"footer_background_color\":\"#455a64\",\"footer_text_color\":\"#b0bec5\",\"copyright_background_color\":\"#37474f\",\"copyright_text_color\":\"#78909c\",\"load_animate_css\":\"1\",\"load_wow_js\":\"1\",\"load_owl_carousel\":\"1\",\"load_octobercms_framework\":\"1\",\"custom_css\":\"\",\"custom_js\":\"\"}','2017-01-14 09:05:08','2017-01-14 09:11:14');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `cms_theme_data` ENABLE KEYS */;
+
+--
+-- Table structure for table `deferred_bindings`
+--
+
+DROP TABLE IF EXISTS `deferred_bindings`;
+CREATE TABLE `deferred_bindings` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `master_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `master_field` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slave_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slave_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `session_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `is_bind` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `deferred_bindings_master_type_index` (`master_type`),
+  KEY `deferred_bindings_master_field_index` (`master_field`),
+  KEY `deferred_bindings_slave_type_index` (`slave_type`),
+  KEY `deferred_bindings_slave_id_index` (`slave_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `deferred_bindings`
+--
+
+
+/*!40000 ALTER TABLE `deferred_bindings` DISABLE KEYS */;
+LOCK TABLES `deferred_bindings` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `deferred_bindings` ENABLE KEYS */;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+CREATE TABLE `failed_jobs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `connection` text COLLATE utf8_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8_unicode_ci NOT NULL,
+  `payload` text COLLATE utf8_unicode_ci NOT NULL,
+  `failed_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+LOCK TABLES `failed_jobs` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+
+--
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+CREATE TABLE `jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payload` text COLLATE utf8_unicode_ci NOT NULL,
+  `attempts` tinyint(3) unsigned NOT NULL,
+  `reserved` tinyint(3) unsigned NOT NULL,
+  `reserved_at` int(10) unsigned DEFAULT NULL,
+  `available_at` int(10) unsigned NOT NULL,
+  `created_at` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+LOCK TABLES `jobs` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+
+--
+-- Table structure for table `kurtjensen_passage_groups_keys`
+--
+
+DROP TABLE IF EXISTS `kurtjensen_passage_groups_keys`;
+CREATE TABLE `kurtjensen_passage_groups_keys` (
+  `user_group_id` int(10) unsigned NOT NULL,
+  `key_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`user_group_id`,`key_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kurtjensen_passage_groups_keys`
+--
+
+
+/*!40000 ALTER TABLE `kurtjensen_passage_groups_keys` DISABLE KEYS */;
+LOCK TABLES `kurtjensen_passage_groups_keys` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `kurtjensen_passage_groups_keys` ENABLE KEYS */;
+
+--
+-- Table structure for table `kurtjensen_passage_keys`
+--
+
+DROP TABLE IF EXISTS `kurtjensen_passage_keys`;
+CREATE TABLE `kurtjensen_passage_keys` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kurtjensen_passage_keys`
+--
+
+
+/*!40000 ALTER TABLE `kurtjensen_passage_keys` DISABLE KEYS */;
+LOCK TABLES `kurtjensen_passage_keys` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `kurtjensen_passage_keys` ENABLE KEYS */;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+LOCK TABLES `migrations` WRITE;
+INSERT INTO `migrations` VALUES ('2013_10_01_000001_Db_Deferred_Bindings',1),('2013_10_01_000002_Db_System_Files',1),('2013_10_01_000003_Db_System_Plugin_Versions',1),('2013_10_01_000004_Db_System_Plugin_History',1),('2013_10_01_000005_Db_System_Settings',1),('2013_10_01_000006_Db_System_Parameters',1),('2013_10_01_000007_Db_System_Add_Disabled_Flag',1),('2013_10_01_000008_Db_System_Mail_Templates',1),('2013_10_01_000009_Db_System_Mail_Layouts',1),('2014_10_01_000010_Db_Jobs',1),('2014_10_01_000011_Db_System_Event_Logs',1),('2014_10_01_000012_Db_System_Request_Logs',1),('2014_10_01_000013_Db_System_Sessions',1),('2015_10_01_000014_Db_System_Mail_Layout_Rename',1),('2015_10_01_000015_Db_System_Add_Frozen_Flag',1),('2015_10_01_000016_Db_Cache',1),('2015_10_01_000017_Db_System_Revisions',1),('2015_10_01_000018_Db_FailedJobs',1),('2016_10_01_000019_Db_System_Plugin_History_Detail_Text',1),('2016_10_01_000020_Db_System_Timestamp_Fix',1),('2013_10_01_000001_Db_Backend_Users',2),('2013_10_01_000002_Db_Backend_User_Groups',2),('2013_10_01_000003_Db_Backend_Users_Groups',2),('2013_10_01_000004_Db_Backend_User_Throttle',2),('2014_01_04_000005_Db_Backend_User_Preferences',2),('2014_10_01_000006_Db_Backend_Access_Log',2),('2014_10_01_000007_Db_Backend_Add_Description_Field',2),('2015_10_01_000008_Db_Backend_Add_Superuser_Flag',2),('2016_10_01_000009_Db_Backend_Timestamp_Fix',2),('2014_10_01_000001_Db_Cms_Theme_Data',3),('2016_10_01_000002_Db_Cms_Timestamp_Fix',3);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_blog_categories`
+--
+
+DROP TABLE IF EXISTS `rainlab_blog_categories`;
+CREATE TABLE `rainlab_blog_categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `parent_id` int(10) unsigned DEFAULT NULL,
+  `nest_left` int(11) DEFAULT NULL,
+  `nest_right` int(11) DEFAULT NULL,
+  `nest_depth` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rainlab_blog_categories_slug_index` (`slug`),
+  KEY `rainlab_blog_categories_parent_id_index` (`parent_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_blog_categories`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_blog_categories` DISABLE KEYS */;
+LOCK TABLES `rainlab_blog_categories` WRITE;
+INSERT INTO `rainlab_blog_categories` VALUES (1,'Uncategorized','uncategorized',NULL,NULL,NULL,1,2,0,'2017-01-14 09:04:46','2017-01-14 09:04:46');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_blog_categories` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_blog_posts`
+--
+
+DROP TABLE IF EXISTS `rainlab_blog_posts`;
+CREATE TABLE `rainlab_blog_posts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `excerpt` text COLLATE utf8_unicode_ci,
+  `content` longtext COLLATE utf8_unicode_ci,
+  `content_html` longtext COLLATE utf8_unicode_ci,
+  `published_at` timestamp NULL DEFAULT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rainlab_blog_posts_user_id_index` (`user_id`),
+  KEY `rainlab_blog_posts_slug_index` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_blog_posts`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_blog_posts` DISABLE KEYS */;
+LOCK TABLES `rainlab_blog_posts` WRITE;
+INSERT INTO `rainlab_blog_posts` VALUES (1,NULL,'First blog post','first-blog-post','The first ever blog post is here. It might be a good idea to update this post with some more relevant content.','This is your first ever **blog post**! It might be a good idea to update this post with some more relevant content.\n\nYou can edit this content by selecting **Blog** from the administration back-end menu.\n\n*Enjoy the good times!*','<p>This is your first ever <strong>blog post</strong>! It might be a good idea to update this post with some more relevant content.</p>\n<p>You can edit this content by selecting <strong>Blog</strong> from the administration back-end menu.</p>\n<p><em>Enjoy the good times!</em></p>','2017-01-14 09:04:46',1,'2017-01-14 09:04:46','2017-01-14 09:04:46');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_blog_posts` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_blog_posts_categories`
+--
+
+DROP TABLE IF EXISTS `rainlab_blog_posts_categories`;
+CREATE TABLE `rainlab_blog_posts_categories` (
+  `post_id` int(10) unsigned NOT NULL,
+  `category_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`post_id`,`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_blog_posts_categories`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_blog_posts_categories` DISABLE KEYS */;
+LOCK TABLES `rainlab_blog_posts_categories` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_blog_posts_categories` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_forum_channels`
+--
+
+DROP TABLE IF EXISTS `rainlab_forum_channels`;
+CREATE TABLE `rainlab_forum_channels` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(10) unsigned DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nest_left` int(11) DEFAULT NULL,
+  `nest_right` int(11) DEFAULT NULL,
+  `nest_depth` int(11) DEFAULT NULL,
+  `count_topics` int(11) NOT NULL DEFAULT '0',
+  `count_posts` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_hidden` tinyint(1) NOT NULL DEFAULT '0',
+  `is_moderated` tinyint(1) NOT NULL DEFAULT '0',
+  `embed_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `rainlab_forum_channels_slug_unique` (`slug`),
+  KEY `rainlab_forum_channels_parent_id_index` (`parent_id`),
+  KEY `rainlab_forum_channels_embed_code_index` (`embed_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_forum_channels`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_forum_channels` DISABLE KEYS */;
+LOCK TABLES `rainlab_forum_channels` WRITE;
+INSERT INTO `rainlab_forum_channels` VALUES (1,NULL,'Channel Orange','channel-orange','A root level forum channel',1,12,0,0,0,'2017-01-14 09:04:50','2017-01-14 09:04:51',0,0,NULL),(2,1,'Autumn Leaves','autumn-leaves','Disccusion about the season of falling leaves.',2,9,1,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL),(3,2,'September','september','The start of the fall season.',3,4,2,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL),(4,2,'October','october','The middle of the fall season.',5,6,2,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL),(5,2,'November','november','The end of the fall season.',7,8,2,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL),(6,1,'Summer Breeze','summer-breeze','Disccusion about the wind at the ocean.',10,11,1,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL),(7,NULL,'Channel Green','channel-green','A root level forum channel',13,18,0,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL),(8,7,'Winter Snow','winter-snow','Disccusion about the frosty snow flakes.',14,15,1,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL),(9,7,'Spring Trees','spring-trees','Disccusion about the blooming gardens.',16,17,1,0,0,'2017-01-14 09:04:51','2017-01-14 09:04:51',0,0,NULL);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_forum_channels` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_forum_members`
+--
+
+DROP TABLE IF EXISTS `rainlab_forum_members`;
+CREATE TABLE `rainlab_forum_members` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `count_posts` int(11) NOT NULL DEFAULT '0',
+  `count_topics` int(11) NOT NULL DEFAULT '0',
+  `last_active_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_moderator` tinyint(1) NOT NULL DEFAULT '0',
+  `is_banned` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `rainlab_forum_members_user_id_index` (`user_id`),
+  KEY `rainlab_forum_members_count_posts_index` (`count_posts`),
+  KEY `rainlab_forum_members_count_topics_index` (`count_topics`),
+  KEY `rainlab_forum_members_last_active_at_index` (`last_active_at`),
+  KEY `rainlab_forum_members_is_moderator_index` (`is_moderator`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_forum_members`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_forum_members` DISABLE KEYS */;
+LOCK TABLES `rainlab_forum_members` WRITE;
+INSERT INTO `rainlab_forum_members` VALUES (1,1,'gerkarasta1','gerkarasta1',0,0,NULL,'2017-01-15 17:55:16','2017-01-15 17:55:16',0,0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_forum_members` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_forum_posts`
+--
+
+DROP TABLE IF EXISTS `rainlab_forum_posts`;
+CREATE TABLE `rainlab_forum_posts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `subject` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `content_html` text COLLATE utf8_unicode_ci,
+  `topic_id` int(10) unsigned DEFAULT NULL,
+  `member_id` int(10) unsigned DEFAULT NULL,
+  `edit_user_id` int(11) DEFAULT NULL,
+  `delete_user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rainlab_forum_posts_topic_id_index` (`topic_id`),
+  KEY `rainlab_forum_posts_member_id_index` (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_forum_posts`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_forum_posts` DISABLE KEYS */;
+LOCK TABLES `rainlab_forum_posts` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_forum_posts` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_forum_topic_followers`
+--
+
+DROP TABLE IF EXISTS `rainlab_forum_topic_followers`;
+CREATE TABLE `rainlab_forum_topic_followers` (
+  `topic_id` int(10) unsigned NOT NULL,
+  `member_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`topic_id`,`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_forum_topic_followers`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_forum_topic_followers` DISABLE KEYS */;
+LOCK TABLES `rainlab_forum_topic_followers` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_forum_topic_followers` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_forum_topics`
+--
+
+DROP TABLE IF EXISTS `rainlab_forum_topics`;
+CREATE TABLE `rainlab_forum_topics` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `subject` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `channel_id` int(10) unsigned NOT NULL,
+  `start_member_id` int(11) DEFAULT NULL,
+  `last_post_id` int(11) DEFAULT NULL,
+  `last_post_member_id` int(11) DEFAULT NULL,
+  `last_post_at` datetime DEFAULT NULL,
+  `is_private` tinyint(1) NOT NULL DEFAULT '0',
+  `is_sticky` tinyint(1) NOT NULL DEFAULT '0',
+  `is_locked` tinyint(1) NOT NULL DEFAULT '0',
+  `count_posts` int(11) NOT NULL DEFAULT '0',
+  `count_views` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `embed_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `rainlab_forum_topics_slug_unique` (`slug`),
+  KEY `sticky_post_time` (`is_sticky`,`last_post_at`),
+  KEY `rainlab_forum_topics_channel_id_index` (`channel_id`),
+  KEY `rainlab_forum_topics_start_member_id_index` (`start_member_id`),
+  KEY `rainlab_forum_topics_last_post_at_index` (`last_post_at`),
+  KEY `rainlab_forum_topics_is_private_index` (`is_private`),
+  KEY `rainlab_forum_topics_is_locked_index` (`is_locked`),
+  KEY `rainlab_forum_topics_count_posts_index` (`count_posts`),
+  KEY `rainlab_forum_topics_count_views_index` (`count_views`),
+  KEY `rainlab_forum_topics_embed_code_index` (`embed_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_forum_topics`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_forum_topics` DISABLE KEYS */;
+LOCK TABLES `rainlab_forum_topics` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_forum_topics` ENABLE KEYS */;
+
+--
+-- Table structure for table `rainlab_user_mail_blockers`
+--
+
+DROP TABLE IF EXISTS `rainlab_user_mail_blockers`;
+CREATE TABLE `rainlab_user_mail_blockers` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `template` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rainlab_user_mail_blockers_email_index` (`email`),
+  KEY `rainlab_user_mail_blockers_template_index` (`template`),
+  KEY `rainlab_user_mail_blockers_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rainlab_user_mail_blockers`
+--
+
+
+/*!40000 ALTER TABLE `rainlab_user_mail_blockers` DISABLE KEYS */;
+LOCK TABLES `rainlab_user_mail_blockers` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `rainlab_user_mail_blockers` ENABLE KEYS */;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payload` text COLLATE utf8_unicode_ci,
+  `last_activity` int(11) DEFAULT NULL,
+  UNIQUE KEY `sessions_id_unique` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+LOCK TABLES `sessions` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+
+--
+-- Table structure for table `shahiemseymor_poll`
+--
+
+DROP TABLE IF EXISTS `shahiemseymor_poll`;
+CREATE TABLE `shahiemseymor_poll` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `question` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_3` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_4` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_5` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_6` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_7` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_8` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_9` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_10` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `shahiemseymor_poll`
+--
+
+
+/*!40000 ALTER TABLE `shahiemseymor_poll` DISABLE KEYS */;
+LOCK TABLES `shahiemseymor_poll` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `shahiemseymor_poll` ENABLE KEYS */;
+
+--
+-- Table structure for table `shahiemseymor_poll_votes`
+--
+
+DROP TABLE IF EXISTS `shahiemseymor_poll_votes`;
+CREATE TABLE `shahiemseymor_poll_votes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_id` int(11) NOT NULL,
+  `poll_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `shahiemseymor_poll_votes`
+--
+
+
+/*!40000 ALTER TABLE `shahiemseymor_poll_votes` DISABLE KEYS */;
+LOCK TABLES `shahiemseymor_poll_votes` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `shahiemseymor_poll_votes` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_event_logs`
+--
+
+DROP TABLE IF EXISTS `system_event_logs`;
+CREATE TABLE `system_event_logs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `level` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `message` text COLLATE utf8_unicode_ci,
+  `details` mediumtext COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `system_event_logs_level_index` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_event_logs`
+--
+
+
+/*!40000 ALTER TABLE `system_event_logs` DISABLE KEYS */;
+LOCK TABLES `system_event_logs` WRITE;
+INSERT INTO `system_event_logs` VALUES (1,'error','exception \'Symfony\\Component\\Debug\\Exception\\FatalErrorException\' with message \'syntax error, unexpected \'title\' (T_STRING), expecting function (T_FUNCTION)\' in Y:\\home\\test1.ru\\www\\storage\\cms\\cache\\29\\42\\about.htm.php:4\nStack trace:\n#0 {main}',NULL,'2017-01-15 11:45:59','2017-01-15 11:45:59'),(2,'error','exception \'Symfony\\Component\\Debug\\Exception\\FatalErrorException\' with message \'syntax error, unexpected \'title\' (T_STRING), expecting function (T_FUNCTION)\' in Y:\\home\\test1.ru\\www\\storage\\cms\\cache\\29\\42\\about.htm.php:4\nStack trace:\n#0 {main}',NULL,'2017-01-15 11:46:05','2017-01-15 11:46:05'),(3,'error','exception \'Symfony\\Component\\Debug\\Exception\\FatalErrorException\' with message \'syntax error, unexpected \'[\', expecting function (T_FUNCTION)\' in Y:\\home\\test1.ru\\www\\storage\\cms\\cache\\29\\42\\about.htm.php:4\nStack trace:\n#0 {main}',NULL,'2017-01-15 11:48:08','2017-01-15 11:48:08'),(4,'error','exception \'Symfony\\Component\\Debug\\Exception\\FatalErrorException\' with message \'syntax error, unexpected \'[\', expecting function (T_FUNCTION)\' in Y:\\home\\test1.ru\\www\\storage\\cms\\cache\\29\\42\\about.htm.php:4\nStack trace:\n#0 {main}',NULL,'2017-01-15 11:49:16','2017-01-15 11:49:16');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_event_logs` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_files`
+--
+
+DROP TABLE IF EXISTS `system_files`;
+CREATE TABLE `system_files` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `disk_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `file_size` int(11) NOT NULL,
+  `content_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `field` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `attachment_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `attachment_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_public` tinyint(1) NOT NULL DEFAULT '1',
+  `sort_order` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `system_files_field_index` (`field`),
+  KEY `system_files_attachment_id_index` (`attachment_id`),
+  KEY `system_files_attachment_type_index` (`attachment_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_files`
+--
+
+
+/*!40000 ALTER TABLE `system_files` DISABLE KEYS */;
+LOCK TABLES `system_files` WRITE;
+INSERT INTO `system_files` VALUES (1,'587be24b43190084247692.png','Untitled.png',29448,'image/png',NULL,NULL,'avatar','1','RainLab\\User\\Models\\User',1,1,'2017-01-15 17:57:47','2017-01-15 17:57:52');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_files` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_mail_layouts`
+--
+
+DROP TABLE IF EXISTS `system_mail_layouts`;
+CREATE TABLE `system_mail_layouts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_html` text COLLATE utf8_unicode_ci,
+  `content_text` text COLLATE utf8_unicode_ci,
+  `content_css` text COLLATE utf8_unicode_ci,
+  `is_locked` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_mail_layouts`
+--
+
+
+/*!40000 ALTER TABLE `system_mail_layouts` DISABLE KEYS */;
+LOCK TABLES `system_mail_layouts` WRITE;
+INSERT INTO `system_mail_layouts` VALUES (1,'Default','default','<html>\n    <head>\n        <style type=\"text/css\" media=\"screen\">\n            {{ css|raw }}\n        </style>\n    </head>\n    <body>\n        {{ content|raw }}\n    </body>\n</html>','{{ content|raw }}','a, a:hover {\n    text-decoration: none;\n    color: #0862A2;\n    font-weight: bold;\n}\n\ntd, tr, th, table {\n    padding: 0px;\n    margin: 0px;\n}\n\np {\n    margin: 10px 0;\n}',1,'2017-01-14 09:04:53','2017-01-14 09:04:53'),(2,'System','system','<html>\n    <head>\n        <style type=\"text/css\" media=\"screen\">\n            {{ css|raw }}\n        </style>\n    </head>\n    <body>\n        {{ content|raw }}\n        <hr />\n        <p>This is an automatic message. Please do not reply to it.</p>\n    </body>\n</html>','{{ content|raw }}\n\n\n---\nThis is an automatic message. Please do not reply to it.','a, a:hover {\n    text-decoration: none;\n    color: #0862A2;\n    font-weight: bold;\n}\n\ntd, tr, th, table {\n    padding: 0px;\n    margin: 0px;\n}\n\np {\n    margin: 10px 0;\n}',1,'2017-01-14 09:04:53','2017-01-14 09:04:53');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_mail_layouts` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_mail_templates`
+--
+
+DROP TABLE IF EXISTS `system_mail_templates`;
+CREATE TABLE `system_mail_templates` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `content_html` text COLLATE utf8_unicode_ci,
+  `content_text` text COLLATE utf8_unicode_ci,
+  `layout_id` int(11) DEFAULT NULL,
+  `is_custom` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `system_mail_templates_layout_id_index` (`layout_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_mail_templates`
+--
+
+
+/*!40000 ALTER TABLE `system_mail_templates` DISABLE KEYS */;
+LOCK TABLES `system_mail_templates` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_mail_templates` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_parameters`
+--
+
+DROP TABLE IF EXISTS `system_parameters`;
+CREATE TABLE `system_parameters` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `namespace` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `group` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `item` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `value` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `item_index` (`namespace`,`group`,`item`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_parameters`
+--
+
+
+/*!40000 ALTER TABLE `system_parameters` DISABLE KEYS */;
+LOCK TABLES `system_parameters` WRITE;
+INSERT INTO `system_parameters` VALUES (1,'system','update','count','0'),(2,'system','core','hash','\"305de721d2f8e9580ef858a799dea70b\"'),(3,'system','core','build','\"382\"'),(4,'system','update','retry','1484481956');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_parameters` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_plugin_history`
+--
+
+DROP TABLE IF EXISTS `system_plugin_history`;
+CREATE TABLE `system_plugin_history` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `version` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `detail` text COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `system_plugin_history_code_index` (`code`),
+  KEY `system_plugin_history_type_index` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_plugin_history`
+--
+
+
+/*!40000 ALTER TABLE `system_plugin_history` DISABLE KEYS */;
+LOCK TABLES `system_plugin_history` WRITE;
+INSERT INTO `system_plugin_history` VALUES (1,'October.Demo','comment','1.0.1','First version of Demo','2017-01-14 09:04:46'),(2,'RainLab.Blog','script','1.0.1','create_posts_table.php','2017-01-14 09:04:46'),(3,'RainLab.Blog','script','1.0.1','create_categories_table.php','2017-01-14 09:04:46'),(4,'RainLab.Blog','script','1.0.1','seed_all_tables.php','2017-01-14 09:04:46'),(5,'RainLab.Blog','comment','1.0.1','Initialize plugin.','2017-01-14 09:04:46'),(6,'RainLab.Blog','comment','1.0.2','Added the processed HTML content column to the posts table.','2017-01-14 09:04:46'),(7,'RainLab.Blog','comment','1.0.3','Category component has been merged with Posts component.','2017-01-14 09:04:47'),(8,'RainLab.Blog','comment','1.0.4','Improvements to the Posts list management UI.','2017-01-14 09:04:47'),(9,'RainLab.Blog','comment','1.0.5','Removes the Author column from blog post list.','2017-01-14 09:04:47'),(10,'RainLab.Blog','comment','1.0.6','Featured images now appear in the Post component.','2017-01-14 09:04:47'),(11,'RainLab.Blog','comment','1.0.7','Added support for the Static Pages menus.','2017-01-14 09:04:47'),(12,'RainLab.Blog','comment','1.0.8','Added total posts to category list.','2017-01-14 09:04:47'),(13,'RainLab.Blog','comment','1.0.9','Added support for the Sitemap plugin.','2017-01-14 09:04:47'),(14,'RainLab.Blog','comment','1.0.10','Added permission to prevent users from seeing posts they did not create.','2017-01-14 09:04:47'),(15,'RainLab.Blog','comment','1.0.11','Deprecate \"idParam\" component property in favour of \"slug\" property.','2017-01-14 09:04:47'),(16,'RainLab.Blog','comment','1.0.12','Fixes issue where images cannot be uploaded caused by latest Markdown library.','2017-01-14 09:04:47'),(17,'RainLab.Blog','comment','1.0.13','Fixes problem with providing pages to Sitemap and Pages plugins.','2017-01-14 09:04:47'),(18,'RainLab.Blog','comment','1.0.14','Add support for CSRF protection feature added to core.','2017-01-14 09:04:47'),(19,'RainLab.Blog','comment','1.1.0','Replaced the Post editor with the new core Markdown editor.','2017-01-14 09:04:47'),(20,'RainLab.Blog','comment','1.1.1','Posts can now be imported and exported.','2017-01-14 09:04:47'),(21,'RainLab.Blog','comment','1.1.2','Posts are no longer visible if the published date has not passed.','2017-01-14 09:04:47'),(22,'RainLab.Blog','comment','1.1.3','Added a New Post shortcut button to the blog menu.','2017-01-14 09:04:47'),(23,'RainLab.Blog','script','1.2.0','categories_add_nested_fields.php','2017-01-14 09:04:47'),(24,'RainLab.Blog','comment','1.2.0','Categories now support nesting.','2017-01-14 09:04:47'),(25,'RainLab.Blog','comment','1.2.1','Post slugs now must be unique.','2017-01-14 09:04:47'),(26,'RainLab.Blog','comment','1.2.2','Fixes issue on new installs.','2017-01-14 09:04:47'),(27,'RainLab.Blog','comment','1.2.3','Minor user interface update.','2017-01-14 09:04:47'),(28,'RainLab.Blog','script','1.2.4','update_timestamp_nullable.php','2017-01-14 09:04:47'),(29,'RainLab.Blog','comment','1.2.4','Database maintenance. Updated all timestamp columns to be nullable.','2017-01-14 09:04:47'),(30,'RainLab.Blog','comment','1.2.5','Added translation support for blog posts.','2017-01-14 09:04:47'),(31,'RainLab.Blog','comment','1.2.6','The published field can now supply a time with the date.','2017-01-14 09:04:47'),(32,'RainLab.Blog','comment','1.2.7','Introduced a new RSS feed component.','2017-01-14 09:04:47'),(33,'RainLab.Blog','comment','1.2.8','Fixes issue with translated `content_html` attribute on blog posts.','2017-01-14 09:04:47'),(34,'RainLab.Blog','comment','1.2.9','Added translation support for blog categories.','2017-01-14 09:04:47'),(35,'RainLab.Blog','comment','1.2.10','Added translation support for post slugs.','2017-01-14 09:04:47'),(36,'RainLab.Blog','comment','1.2.11','Fixes bug where excerpt is not translated.','2017-01-14 09:04:47'),(37,'RainLab.Blog','comment','1.2.12','Description field added to category form.','2017-01-14 09:04:47'),(38,'RainLab.Blog','comment','1.2.13','Improved support for Static Pages menus, added a blog post and all blog posts.','2017-01-14 09:04:47'),(39,'RainLab.Blog','comment','1.2.14','Added post exception property to the post list component, useful for showing related posts.','2017-01-14 09:04:47'),(40,'RainLab.User','script','1.0.1','create_users_table.php','2017-01-14 09:04:47'),(41,'RainLab.User','script','1.0.1','create_throttle_table.php','2017-01-14 09:04:48'),(42,'RainLab.User','comment','1.0.1','Initialize plugin.','2017-01-14 09:04:48'),(43,'RainLab.User','comment','1.0.2','Seed tables.','2017-01-14 09:04:48'),(44,'RainLab.User','comment','1.0.3','Translated hard-coded text to language strings.','2017-01-14 09:04:48'),(45,'RainLab.User','comment','1.0.4','Improvements to user-interface for Location manager.','2017-01-14 09:04:48'),(46,'RainLab.User','comment','1.0.5','Added contact details for users.','2017-01-14 09:04:48'),(47,'RainLab.User','script','1.0.6','create_mail_blockers_table.php','2017-01-14 09:04:48'),(48,'RainLab.User','comment','1.0.6','Added Mail Blocker utility so users can block specific mail templates.','2017-01-14 09:04:48'),(49,'RainLab.User','comment','1.0.7','Add back-end Settings page.','2017-01-14 09:04:48'),(50,'RainLab.User','comment','1.0.8','Updated the Settings page.','2017-01-14 09:04:48'),(51,'RainLab.User','comment','1.0.9','Adds new welcome mail message for users and administrators.','2017-01-14 09:04:48'),(52,'RainLab.User','comment','1.0.10','Adds administrator-only activation mode.','2017-01-14 09:04:48'),(53,'RainLab.User','script','1.0.11','users_add_login_column.php','2017-01-14 09:04:48'),(54,'RainLab.User','comment','1.0.11','Users now have an optional login field that defaults to the email field.','2017-01-14 09:04:48'),(55,'RainLab.User','script','1.0.12','users_rename_login_to_username.php','2017-01-14 09:04:48'),(56,'RainLab.User','comment','1.0.12','Create a dedicated setting for choosing the login mode.','2017-01-14 09:04:48'),(57,'RainLab.User','comment','1.0.13','Minor fix to the Account sign in logic.','2017-01-14 09:04:48'),(58,'RainLab.User','comment','1.0.14','Minor improvements to the code.','2017-01-14 09:04:48'),(59,'RainLab.User','script','1.0.15','users_add_surname.php','2017-01-14 09:04:48'),(60,'RainLab.User','comment','1.0.15','Adds last name column to users table (surname).','2017-01-14 09:04:48'),(61,'RainLab.User','comment','1.0.16','Require permissions for settings page too.','2017-01-14 09:04:48'),(62,'RainLab.User','comment','1.1.0','!!! Profile fields and Locations have been removed.','2017-01-14 09:04:48'),(63,'RainLab.User','script','1.1.1','create_user_groups_table.php','2017-01-14 09:04:49'),(64,'RainLab.User','script','1.1.1','seed_user_groups_table.php','2017-01-14 09:04:49'),(65,'RainLab.User','comment','1.1.1','Users can now be added to groups.','2017-01-14 09:04:49'),(66,'RainLab.User','comment','1.1.2','A raw URL can now be passed as the redirect property in the Account component.','2017-01-14 09:04:49'),(67,'RainLab.User','comment','1.1.3','Adds a super user flag to the users table, reserved for future use.','2017-01-14 09:04:49'),(68,'RainLab.User','comment','1.1.4','User list can be filtered by the group they belong to.','2017-01-14 09:04:49'),(69,'RainLab.User','comment','1.1.5','Adds a new permission to hide the User settings menu item.','2017-01-14 09:04:49'),(70,'RainLab.User','script','1.2.0','users_add_deleted_at.php','2017-01-14 09:04:49'),(71,'RainLab.User','comment','1.2.0','Users can now deactivate their own accounts.','2017-01-14 09:04:49'),(72,'RainLab.User','comment','1.2.1','New feature for checking if a user is recently active/online.','2017-01-14 09:04:49'),(73,'RainLab.User','comment','1.2.2','Add bulk action button to user list.','2017-01-14 09:04:49'),(74,'RainLab.User','comment','1.2.3','Included some descriptive paragraphs in the Reset Password component markup.','2017-01-14 09:04:49'),(75,'RainLab.User','comment','1.2.4','Added a checkbox for blocking all mail sent to the user.','2017-01-14 09:04:49'),(76,'RainLab.User','script','1.2.5','update_timestamp_nullable.php','2017-01-14 09:04:49'),(77,'RainLab.User','comment','1.2.5','Database maintenance. Updated all timestamp columns to be nullable.','2017-01-14 09:04:49'),(78,'RainLab.User','script','1.2.6','users_add_last_seen.php','2017-01-14 09:04:49'),(79,'RainLab.User','comment','1.2.6','Add a dedicated last seen column for users.','2017-01-14 09:04:49'),(80,'RainLab.User','comment','1.2.7','Minor fix to user timestamp attributes.','2017-01-14 09:04:49'),(81,'RainLab.User','comment','1.2.8','Add date range filter to users list. Introduced a logout event.','2017-01-14 09:04:49'),(82,'RainLab.User','comment','1.2.9','Add invitation mail for new accounts created in the back-end.','2017-01-14 09:04:49'),(83,'RainLab.User','script','1.3.0','users_add_guest_flag.php','2017-01-14 09:04:49'),(84,'RainLab.User','script','1.3.0','users_add_superuser_flag.php','2017-01-14 09:04:49'),(85,'RainLab.User','comment','1.3.0','Introduced guest user accounts.','2017-01-14 09:04:49'),(86,'RainLab.User','comment','1.3.1','User notification variables can now be extended.','2017-01-14 09:04:49'),(87,'RainLab.User','comment','1.3.2','Minor fix to the Auth::register method.','2017-01-14 09:04:49'),(88,'RainLab.User','comment','1.3.3','Allow prevention of concurrent user sessions via the user settings.','2017-01-14 09:04:49'),(89,'RainLab.Forum','script','1.0.1','create_channels_table.php','2017-01-14 09:04:50'),(90,'RainLab.Forum','script','1.0.1','create_posts_table.php','2017-01-14 09:04:50'),(91,'RainLab.Forum','script','1.0.1','create_topics_table.php','2017-01-14 09:04:50'),(92,'RainLab.Forum','script','1.0.1','create_members_table.php','2017-01-14 09:04:50'),(93,'RainLab.Forum','script','1.0.1','seed_all_tables.php','2017-01-14 09:04:51'),(94,'RainLab.Forum','comment','1.0.1','First version of Forum','2017-01-14 09:04:51'),(95,'RainLab.Forum','script','1.0.2','create_topic_watches_table.php','2017-01-14 09:04:51'),(96,'RainLab.Forum','comment','1.0.2','Add unread flags to topics','2017-01-14 09:04:51'),(97,'RainLab.Forum','script','1.0.3','members_add_mod_and_ban.php','2017-01-14 09:04:51'),(98,'RainLab.Forum','comment','1.0.3','Users can now be made moderators or be banned','2017-01-14 09:04:51'),(99,'RainLab.Forum','script','1.0.4','channels_add_hidden_and_moderated.php','2017-01-14 09:04:51'),(100,'RainLab.Forum','comment','1.0.4','Channels can now be hidden or moderated','2017-01-14 09:04:51'),(101,'RainLab.Forum','script','1.0.5','add_embed_code.php','2017-01-14 09:04:52'),(102,'RainLab.Forum','comment','1.0.5','Introduced topic and channel embedding','2017-01-14 09:04:52'),(103,'RainLab.Forum','script','1.0.6','create_channel_watches_table.php','2017-01-14 09:04:52'),(104,'RainLab.Forum','comment','1.0.6','Add unread flags to channels','2017-01-14 09:04:52'),(105,'RainLab.Forum','script','1.0.7','create_topic_followers_table.php','2017-01-14 09:04:52'),(106,'RainLab.Forum','comment','1.0.7','Forum members can now follow topics','2017-01-14 09:04:52'),(107,'RainLab.Forum','comment','1.0.8','Added Channel name to the Topics component view','2017-01-14 09:04:52'),(108,'RainLab.Forum','comment','1.0.9','Updated the Settings page','2017-01-14 09:04:52'),(109,'RainLab.Forum','comment','1.0.10','Users can now report spammers who can be banned by moderators.','2017-01-14 09:04:52'),(110,'RainLab.Forum','comment','1.0.11','Users can now quote other posts.','2017-01-14 09:04:52'),(111,'RainLab.Forum','comment','1.0.12','Improve support for CDN asset hosting.','2017-01-14 09:04:52'),(112,'RainLab.Forum','comment','1.0.13','Fixes a bug where channels cannot be selected in the Embed component inspector.','2017-01-14 09:04:52'),(113,'RainLab.Forum','comment','1.0.14','Improve the pagination code used in the component default markup.','2017-01-14 09:04:52'),(114,'RainLab.Forum','comment','1.0.15','When a User is deleted, their Member profile and posts is also deleted.','2017-01-14 09:04:52'),(115,'RainLab.Forum','comment','1.0.16','Posting topics is now throttled allowing 3 new topics every 15 minutes.','2017-01-14 09:04:52'),(116,'RainLab.Forum','comment','1.0.17','Update channel reorder page to new system reordering feature.','2017-01-14 09:04:52'),(117,'RainLab.Forum','comment','1.0.18','Minor fix to embed topic component.','2017-01-14 09:04:52'),(118,'RainLab.Forum','script','1.0.19','update_timestamp_nullable.php','2017-01-14 09:04:53'),(119,'RainLab.Forum','comment','1.0.19','Database maintenance. Updated all timestamp columns to be nullable.','2017-01-14 09:04:53'),(120,'RainLab.Forum','script','1.1.0','drop_watches_tables.php','2017-01-14 09:04:53'),(121,'RainLab.Forum','comment','1.1.0','Major performance enhancements','2017-01-14 09:04:53'),(122,'RainLab.Forum','comment','1.1.1','Fixes bug throwing error when a forum topic has no posts.','2017-01-14 09:04:53'),(123,'AhmadFatoni.ApiGenerator','comment','1.0.1','Initialize plugin.','2017-01-14 10:07:03'),(124,'AhmadFatoni.ApiGenerator','script','1.0.2','builder_table_create_ahmadfatoni_apigenerator_data.php','2017-01-14 10:07:03'),(125,'AhmadFatoni.ApiGenerator','comment','1.0.2','Created table ahmadfatoni_apigenerator_data','2017-01-14 10:07:03'),(126,'Mey.Breadcrumbs','comment','1.0.1','First version of Breadcrumbs','2017-01-14 10:07:31'),(127,'Mey.Breadcrumbs','comment','1.0.2','Update how the menu works','2017-01-14 10:07:31'),(128,'Mey.Breadcrumbs','comment','1.0.3','Add the option to set the crumb title using a DOM element that lives on the page. This is helpful for pages that use :slug type routing.','2017-01-14 10:07:31'),(129,'Mey.Breadcrumbs','comment','1.0.4','Pages are now sorted by title in the dropdown menu in the breadcrumbs tab.','2017-01-14 10:07:31'),(130,'Mey.Breadcrumbs','comment','1.0.5','Update to fix the page sorting issue. Pages now sort alphabetically in the dropdown menu. Also a better icon choice.','2017-01-14 10:07:31'),(131,'Mey.Breadcrumbs','comment','1.0.6','Internal updates and bug fixes.','2017-01-14 10:07:31'),(132,'Mey.Breadcrumbs','comment','1.0.7','Bug fix for those who use element titles. Now no error will be thrown if the element does not exist on the page.','2017-01-14 10:07:31'),(133,'Mey.Breadcrumbs','comment','1.0.8','Updated menu to be much more logical. Also gave some more context to he menu dropdown.','2017-01-14 10:07:31'),(134,'Mey.Breadcrumbs','comment','1.0.9','Update to be compatible with the latest october build.','2017-01-14 10:07:31'),(135,'Mey.Breadcrumbs','comment','1.0.10','Fix for compatibility with 286 build.','2017-01-14 10:07:31'),(136,'NetSTI.Uploader','comment','1.0.1','Initialize plugin.','2017-01-14 10:08:11'),(137,'NetSTI.Uploader','comment','1.0.2','Remove RainLab.Builder dependency and work with attachOne relationship','2017-01-14 10:08:11'),(138,'Lilessam.Frontendmailsender','comment','1.0.0','First version of Lilessam.Frontendmailsender Plugin','2017-01-14 10:08:23'),(139,'KurtJensen.Passage','script','1.0.1','create_tables.php','2017-01-14 10:08:41'),(140,'KurtJensen.Passage','comment','1.0.1','Initialize plugin.','2017-01-14 10:08:41'),(141,'KurtJensen.Passage','comment','1.0.2','Added replacement twig tag for hasRole() called inGroup(). This checks to see if user belongs to RainLab\\User\\Models\\UserGroup.','2017-01-14 10:08:41'),(142,'KurtJensen.Passage','comment','1.0.3','Fixed error caused by inGroup($group) on non-logged in user.','2017-01-14 10:08:41'),(143,'KurtJensen.Passage','comment','1.0.4','Added messageURL() to enable Author Notices','2017-01-14 10:08:41'),(144,'KurtJensen.Passage','comment','1.0.5','!!! This is an important update that contains breaking changes. Changed inGroup to use code instead of name and added methods.','2017-01-14 10:08:41'),(145,'KurtJensen.Passage','comment','1.0.6','Fixes error at plugin.php line 152','2017-01-14 10:08:41'),(146,'KurtJensen.Passage','comment','1.0.7','Fixes dumb mistake at plugin.php line 150 and caches groups better','2017-01-14 10:08:41'),(147,'KurtJensen.Passage','comment','1.0.8','Added model UsersGroups (from Rainlab) to make easier to get users of a permission key','2017-01-14 10:08:41'),(148,'KurtJensen.Passage','comment','1.0.9','Prevents unactivated users from having any permissions','2017-01-14 10:08:41'),(149,'KurtJensen.Passage','comment','1.0.10','Fixed nullpointer when no user is logged in ( Thanks jhendess )','2017-01-14 10:08:41'),(150,'ShahiemSeymor.Poll','script','1.0.1','create_poll_table.php','2017-01-14 10:09:29'),(151,'ShahiemSeymor.Poll','script','1.0.1','create_poll_votes_table.php','2017-01-14 10:09:29'),(152,'ShahiemSeymor.Poll','comment','1.0.1','First version','2017-01-14 10:09:29'),(153,'ShahiemSeymor.Poll','comment','1.0.2','Bug fixed (You can now display more than one poll on a page)','2017-01-14 10:09:29'),(154,'ShahiemSeymor.Poll','comment','1.0.3','Migration UP/DOWN table names bug fixed','2017-01-14 10:09:29'),(155,'ShahiemSeymor.Poll','comment','1.0.4','Added delete button list view, added required fields','2017-01-14 10:09:29'),(156,'ShahiemSeymor.Poll','comment','1.0.5','Ajax bug fixed, code cleanup','2017-01-14 10:09:29'),(157,'OFFLINE.SiteSearch','comment','1.0.1','First version of SiteSearch','2017-01-14 10:09:43'),(158,'OFFLINE.SiteSearch','comment','1.0.2','Added experimental CMS pages results provider','2017-01-14 10:09:43'),(159,'OFFLINE.SiteSearch','comment','1.0.3','Added missing component','2017-01-14 10:09:43'),(160,'OFFLINE.SiteSearch','comment','1.0.4','Added support for RadiantWeb.ProBlog','2017-01-14 10:09:43'),(161,'OFFLINE.SiteSearch','comment','1.0.5','Moved configuration to the backend','2017-01-14 10:09:43'),(162,'OFFLINE.SiteSearch','comment','1.0.6','Fixed hardcoded url in pagination','2017-01-14 10:09:43'),(163,'OFFLINE.SiteSearch','comment','1.0.7','Add function for getting last page number (Thanks to vojtasvoboda)','2017-01-14 10:09:43'),(164,'OFFLINE.SiteSearch','comment','1.0.8','Add cs_CZ locale (Thanks to vojtasvoboda)','2017-01-14 10:09:43'),(165,'OFFLINE.SiteSearch','comment','1.0.9','Added support for ArrizalAmin.Portfolio plugin','2017-01-14 10:09:43'),(166,'OFFLINE.SiteSearch','comment','1.0.10','Removed unused component','2017-01-14 10:09:43'),(167,'OFFLINE.SiteSearch','script','1.1.0','Fixed bug where RainLab.Pages results were displayed twice','2017-01-14 10:09:43'),(168,'OFFLINE.SiteSearch','script','1.1.0','Honor disabled plugins setting','2017-01-14 10:09:43'),(169,'OFFLINE.SiteSearch','script','1.1.0','Generate absolute URLs in search results by default','2017-01-14 10:09:43'),(170,'OFFLINE.SiteSearch','comment','1.1.0','Added support for translated contents in RainLab.Pages, ArrizalAmin.Portfolio and RadiantWeb.ProBlog','2017-01-14 10:09:43'),(171,'OFFLINE.SiteSearch','comment','1.1.1','Added optimized siteSearchInclude component for cms pages search','2017-01-14 10:09:43'),(172,'OFFLINE.SiteSearch','comment','1.1.2','Fixed backend permissions','2017-01-14 10:09:43'),(173,'OFFLINE.SiteSearch','comment','1.1.3','Added ru_RU locale (Thanks to mokeev1995)','2017-01-14 10:09:43'),(174,'OFFLINE.SiteSearch','script','1.2.1','Refactored search providers and results page','2017-01-14 10:09:43'),(175,'OFFLINE.SiteSearch','comment','1.2.1','Added support for Feegleweb.Octoshop (Thanks to billyzduke)','2017-01-14 10:09:43'),(176,'OFFLINE.SiteSearch','comment','1.2.2','Minor bugfix in Feegleweb.Octoshop settings page translation','2017-01-14 10:09:43'),(177,'OFFLINE.SiteSearch','comment','1.2.3','Fixed bug where the search results sometimes broke the page layout','2017-01-14 10:09:43'),(178,'OFFLINE.SiteSearch','comment','1.2.4','Fixed bug where unavailable thumbnails lead to an error','2017-01-14 10:09:43'),(179,'OFFLINE.SiteSearch','comment','1.2.5','Fixed bug where the provider badge is not displayed for custom search providers','2017-01-14 10:09:43'),(180,'OFFLINE.SiteSearch','comment','1.2.6','Added support for Responsiv.Showcase (Thanks to MichiReich)','2017-01-14 10:09:43'),(181,'OFFLINE.SiteSearch','comment','1.2.7','Fixed bug where custom url settings were ignored in search results for some providers','2017-01-14 10:09:43'),(182,'OFFLINE.SiteSearch','comment','1.2.8','Added support for viewBag properties in RainLab.Pages','2017-01-14 10:09:43'),(183,'OFFLINE.SiteSearch','comment','1.2.9','Added support for static page component hosts','2017-01-14 10:09:43'),(184,'OFFLINE.SiteSearch','comment','1.2.10','Added support for multiple variables in Rainlab.Blog urls (Thanks to graker)','2017-01-14 10:09:43'),(185,'OFFLINE.SiteSearch','comment','1.2.11','Optimized handling of multibyte strings','2017-01-14 10:09:43'),(186,'OFFLINE.SiteSearch','comment','1.2.12','Added support for Jiri.Jkshop','2017-01-14 10:09:43'),(187,'OFFLINE.SiteSearch','comment','1.2.13','Minor bugfixes for marked queries in search results and Rainlab.Blog provider (Thanks to graker)','2017-01-14 10:09:43'),(188,'OFFLINE.SiteSearch','comment','1.2.14','Fixed bug in Jiri.JKShop provider','2017-01-14 10:09:43'),(189,'OFFLINE.SiteSearch','comment','1.2.15','Added a new meta property for search results (thanks to cracki)','2017-01-14 10:09:43'),(190,'OFFLINE.SiteSearch','comment','1.2.16','Added Persian (Farsi) translations (thanks to cracki)','2017-01-14 10:09:43'),(191,'OFFLINE.SiteSearch','comment','1.2.17','Added support for Indikator.News (thanks to gergo85)','2017-01-14 10:09:43'),(192,'OFFLINE.SiteSearch','comment','1.2.18','Fixed bug where titles of static pages where not searched (thanks to beenen445)','2017-01-14 10:09:43'),(193,'OFFLINE.SiteSearch','comment','1.2.19','Added support for OFFLINE.SnipcartShop','2017-01-14 10:09:43'),(194,'OFFLINE.SiteSearch','comment','1.2.20','Added support for VojtaSvoboda.Brands (thanks to vojtasvoboda)','2017-01-14 10:09:43'),(195,'OFFLINE.SiteSearch','comment','1.2.21','Added Portuguese translations (thanks to ribsousa)','2017-01-14 10:09:43'),(196,'OFFLINE.SiteSearch','comment','1.2.22','Fixed Portuguese translations','2017-01-14 10:09:43'),(197,'OFFLINE.SiteSearch','comment','1.2.23','Fixed support for translated Rainlab.Blog contents','2017-01-14 10:09:43'),(198,'OFFLINE.SiteSearch','comment','1.2.24','Added composer.json to allow loading plugin as dependency (thanks to adduc)','2017-01-14 10:09:43'),(199,'Tiipiik.SmsSender','script','1.0.1','create_message_histories_table.php','2017-01-14 10:10:00'),(200,'Tiipiik.SmsSender','comment','1.0.1','First version of SmsSender','2017-01-14 10:10:00'),(201,'Tiipiik.SmsSender','comment','1.0.2','Added russian localisation, PR by @maximlit. Thanks !','2017-01-14 10:10:00'),(202,'Tiipiik.SmsSender','comment','1.0.3','Added Dutch language, thanks to @dogiedog','2017-01-14 10:10:00'),(203,'VojtaSvoboda.UserSideMenu','comment','1.0.1','First version of UserSideMenu','2017-01-14 10:10:39'),(204,'VojtaSvoboda.UserSideMenu','comment','1.0.2','Add Hungarian locale (thanks to Szab? Gerg?)','2017-01-14 10:10:39'),(205,'VojtaSvoboda.UserSideMenu','comment','1.0.3','Update Czech language','2017-01-14 10:10:39'),(206,'Clake.UserExtended','script','1.0.1','seed_basic_user_groups.php','2017-01-14 10:10:54'),(207,'Clake.UserExtended','comment','1.0.1','Seed in basic groups.','2017-01-14 10:10:54'),(208,'Clake.UserExtended','script','1.0.2','create_friends_table.php','2017-01-14 10:10:54'),(209,'Clake.UserExtended','comment','1.0.2','Create the table.','2017-01-14 10:10:54'),(210,'Clake.UserExtended','script','1.0.3','friends_add_accepted.php','2017-01-14 10:10:54'),(211,'Clake.UserExtended','comment','1.0.3','Add Accepted to Friends table.','2017-01-14 10:10:54'),(212,'Clake.UserExtended','comment','1.0.4','Added user searching','2017-01-14 10:10:54'),(213,'Clake.UserExtended','script','1.0.5','create_comments_table.php','2017-01-14 10:10:54'),(214,'Clake.UserExtended','comment','1.0.5','Add Comments table','2017-01-14 10:10:54'),(215,'Clake.UserExtended','script','1.0.6','comments_add_author.php','2017-01-14 10:10:54'),(216,'Clake.UserExtended','comment','1.0.6','Added author to comments table','2017-01-14 10:10:54'),(217,'Clake.UserExtended','comment','1.0.7','Added user profile pages','2017-01-14 10:10:54'),(218,'Clake.UserExtended','comment','1.0.8','Added delete capabilities for comments and friends','2017-01-14 10:10:54'),(219,'Clake.UserExtended','comment','1.0.9','Fixed \'Code Already In use\' bug','2017-01-14 10:10:54'),(220,'Clake.UserExtended','script','1.0.10','user_groups_add_level.php','2017-01-14 10:10:55'),(221,'Clake.UserExtended','comment','1.0.10','Added Heirarchal Level to User Groups','2017-01-14 10:10:55'),(222,'Clake.UserExtended','comment','1.0.11','Updated User Group Seeder. You may wish to consider to rerun it.','2017-01-14 10:10:56'),(223,'Clake.UserExtended','script','1.0.12','create_timezones_table.php','2017-01-14 10:10:56'),(224,'Clake.UserExtended','comment','1.0.12','Added Timezone table','2017-01-14 10:10:56'),(225,'Clake.UserExtended','script','1.0.13','user_add_timezone.php','2017-01-14 10:10:56'),(226,'Clake.UserExtended','comment','1.0.13','Modified Users table to add a timezone_id column','2017-01-14 10:10:56'),(227,'Clake.UserExtended','script','1.0.14','seed_time_zones.php','2017-01-14 10:10:58'),(228,'Clake.UserExtended','comment','1.0.14','Seed timezones','2017-01-14 10:10:58'),(229,'Clake.UserExtended','script','1.0.15','create_roles_table.php','2017-01-14 10:10:58'),(230,'Clake.UserExtended','comment','1.0.15','Create Roles table','2017-01-14 10:10:58'),(231,'Clake.UserExtended','script','1.0.16','Use Case 1; You own a blogging company with a group called \'writers\'. The writers group can have roles \'Senior Writer\', \'Junior Writer\', and \'Writer Editor\'','2017-01-14 10:10:58'),(232,'Clake.UserExtended','comment','1.0.16','Added Roles as a linear heirarchy under a group.','2017-01-14 10:10:58'),(233,'Clake.UserExtended','script','1.0.17','user_groups_add_role.php','2017-01-14 10:10:58'),(234,'Clake.UserExtended','comment','1.0.17','Adds role to the Users Groups table','2017-01-14 10:10:58'),(235,'Clake.UserExtended','script','1.0.18','users_groups_remove_primary_keys.php','2017-01-14 10:10:58'),(236,'Clake.UserExtended','comment','1.0.18','Removes existing primary keys from Users Groups model','2017-01-14 10:10:58'),(237,'Clake.UserExtended','script','1.0.19','users_groups_add_primary_id.php','2017-01-14 10:10:58'),(238,'Clake.UserExtended','comment','1.0.19','Adds a primary id key to the users_groups model','2017-01-14 10:10:58'),(239,'Clake.UserExtended','comment','1.0.20','Added a controller for Roles. Check the \'User\' tab in the backend.','2017-01-14 10:10:58'),(240,'Clake.UserExtended','comment','1.0.21','Added the Timezonable trait. Useful for automatically converting model fields to the logged in users timezone.','2017-01-14 10:10:58'),(241,'Clake.UserExtended','comment','1.0.22','Initial release of the Role Manager in the backend.','2017-01-14 10:10:58'),(242,'Clake.UserExtended','script','1.0.23','user_groups_change_level_to_sort_order.php','2017-01-14 10:10:59'),(243,'Clake.UserExtended','comment','1.0.23','Bug Fixes','2017-01-14 10:10:59'),(244,'Clake.UserExtended','comment','1.0.24','Fixed data structures bug','2017-01-14 10:10:59');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_plugin_history` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_plugin_versions`
+--
+
+DROP TABLE IF EXISTS `system_plugin_versions`;
+CREATE TABLE `system_plugin_versions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `version` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `is_disabled` tinyint(1) NOT NULL DEFAULT '0',
+  `is_frozen` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `system_plugin_versions_code_index` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_plugin_versions`
+--
+
+
+/*!40000 ALTER TABLE `system_plugin_versions` DISABLE KEYS */;
+LOCK TABLES `system_plugin_versions` WRITE;
+INSERT INTO `system_plugin_versions` VALUES (1,'October.Demo','1.0.1','2017-01-14 09:04:46',0,0),(2,'RainLab.Blog','1.2.14','2017-01-14 09:04:47',0,0),(3,'RainLab.User','1.3.3','2017-01-14 09:04:49',0,0),(4,'RainLab.Forum','1.1.1','2017-01-14 09:04:53',0,0),(5,'AhmadFatoni.ApiGenerator','1.0.2','2017-01-14 10:07:03',0,0),(6,'Mey.Breadcrumbs','1.0.10','2017-01-14 10:07:31',0,0),(7,'NetSTI.Uploader','1.0.2','2017-01-14 10:08:11',0,0),(8,'Lilessam.Frontendmailsender','1.0.0','2017-01-14 10:08:23',0,0),(9,'KurtJensen.Passage','1.0.10','2017-01-14 10:08:41',0,0),(10,'ShahiemSeymor.Poll','1.0.5','2017-01-14 10:09:29',0,0),(11,'OFFLINE.SiteSearch','1.2.24','2017-01-14 10:09:43',0,0),(12,'Tiipiik.SmsSender','1.0.3','2017-01-14 10:10:00',0,0),(13,'VojtaSvoboda.UserSideMenu','1.0.3','2017-01-14 10:10:39',0,0),(14,'Clake.UserExtended','1.0.24','2017-01-14 10:10:59',0,0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_plugin_versions` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_request_logs`
+--
+
+DROP TABLE IF EXISTS `system_request_logs`;
+CREATE TABLE `system_request_logs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `status_code` int(11) DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `referer` text COLLATE utf8_unicode_ci,
+  `count` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_request_logs`
+--
+
+
+/*!40000 ALTER TABLE `system_request_logs` DISABLE KEYS */;
+LOCK TABLES `system_request_logs` WRITE;
+INSERT INTO `system_request_logs` VALUES (1,404,'http://test1.ru/install_files/images/leaves.png','[\"http:\\/\\/test1.ru\\/install_files\\/css\\/vendor.css\"]',1,'2017-01-14 09:04:56','2017-01-14 09:04:56'),(2,404,'http://test1.ru/lk',NULL,3,'2017-01-15 13:11:52','2017-01-15 17:50:43'),(3,404,'http://test1.ru/lk/1',NULL,1,'2017-01-15 18:02:34','2017-01-15 18:02:34'),(4,404,'http://127.0.0.1/Tools/phpmyadmin',NULL,1,'2017-01-18 02:56:38','2017-01-18 02:56:38'),(5,404,'http://127.0.0.1/favicon.ico','[\"http:\\/\\/127.0.0.1\\/Tools\\/phpmyadmin\\/\"]',1,'2017-01-18 02:56:40','2017-01-18 02:56:40'),(6,404,'http://127.0.0.1/Tools/phpmyadmin/index.php',NULL,1,'2017-01-18 02:57:42','2017-01-18 02:57:42');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_request_logs` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_revisions`
+--
+
+DROP TABLE IF EXISTS `system_revisions`;
+CREATE TABLE `system_revisions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `field` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cast` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `old_value` text COLLATE utf8_unicode_ci,
+  `new_value` text COLLATE utf8_unicode_ci,
+  `revisionable_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `revisionable_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `system_revisions_revisionable_id_revisionable_type_index` (`revisionable_id`,`revisionable_type`),
+  KEY `system_revisions_user_id_index` (`user_id`),
+  KEY `system_revisions_field_index` (`field`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_revisions`
+--
+
+
+/*!40000 ALTER TABLE `system_revisions` DISABLE KEYS */;
+LOCK TABLES `system_revisions` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_revisions` ENABLE KEYS */;
+
+--
+-- Table structure for table `system_settings`
+--
+
+DROP TABLE IF EXISTS `system_settings`;
+CREATE TABLE `system_settings` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `item` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `value` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `system_settings_item_index` (`item`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system_settings`
+--
+
+
+/*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
+LOCK TABLES `system_settings` WRITE;
+INSERT INTO `system_settings` VALUES (1,'user_settings','{\"require_activation\":\"0\",\"activate_mode\":\"auto\",\"use_throttle\":\"1\",\"block_persistence\":\"0\",\"allow_registration\":\"0\",\"welcome_template\":\"rainlab.user::mail.welcome\",\"login_attribute\":\"username\"}');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
+
+--
+-- Table structure for table `tiipiik_smssender_message_histories`
+--
+
+DROP TABLE IF EXISTS `tiipiik_smssender_message_histories`;
+CREATE TABLE `tiipiik_smssender_message_histories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `from` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `to` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `message` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `short_status` int(11) NOT NULL DEFAULT '0',
+  `sess_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tiipiik_smssender_message_histories`
+--
+
+
+/*!40000 ALTER TABLE `tiipiik_smssender_message_histories` DISABLE KEYS */;
+LOCK TABLES `tiipiik_smssender_message_histories` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tiipiik_smssender_message_histories` ENABLE KEYS */;
+
+--
+-- Table structure for table `user_groups`
+--
+
+DROP TABLE IF EXISTS `user_groups`;
+CREATE TABLE `user_groups` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `user_groups_code_index` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user_groups`
+--
+
+
+/*!40000 ALTER TABLE `user_groups` DISABLE KEYS */;
+LOCK TABLES `user_groups` WRITE;
+INSERT INTO `user_groups` VALUES (1,'Guest','guest','Default group for guest users.','2017-01-14 09:04:49','2017-01-14 09:04:49',0),(2,'Registered','registered','Default group for registered users.','2017-01-14 09:04:49','2017-01-14 09:04:49',0),(3,'Admin','admin','Administrator group','2017-01-14 10:10:54','2017-01-14 10:10:54',0),(4,'Friend','friend','Generalized friend group.','2017-01-14 10:10:54','2017-01-14 10:10:54',0),(5,'Tester','tester','Access bleeding edge features','2017-01-14 10:10:54','2017-01-14 10:10:54',0),(6,'Debugger','debugger','Debug text, buttons, and visuals appear on the pages','2017-01-14 10:10:54','2017-01-14 10:10:54',0),(7,'Developer','developer','Access to the dev tools and options','2017-01-14 10:10:54','2017-01-14 10:10:54',0),(8,'Banned','banned','Banned from viewing pages','2017-01-14 10:10:54','2017-01-14 10:10:54',0);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `user_groups` ENABLE KEYS */;
+
+--
+-- Table structure for table `user_throttle`
+--
+
+DROP TABLE IF EXISTS `user_throttle`;
+CREATE TABLE `user_throttle` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `ip_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `attempts` int(11) NOT NULL DEFAULT '0',
+  `last_attempt_at` timestamp NULL DEFAULT NULL,
+  `is_suspended` tinyint(1) NOT NULL DEFAULT '0',
+  `suspended_at` timestamp NULL DEFAULT NULL,
+  `is_banned` tinyint(1) NOT NULL DEFAULT '0',
+  `banned_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_throttle_user_id_index` (`user_id`),
+  KEY `user_throttle_ip_address_index` (`ip_address`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user_throttle`
+--
+
+
+/*!40000 ALTER TABLE `user_throttle` DISABLE KEYS */;
+LOCK TABLES `user_throttle` WRITE;
+INSERT INTO `user_throttle` VALUES (1,1,NULL,0,NULL,0,NULL,0,NULL);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `user_throttle` ENABLE KEYS */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `activation_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `persist_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `reset_password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `permissions` text COLLATE utf8_unicode_ci,
+  `is_activated` tinyint(1) NOT NULL DEFAULT '0',
+  `activated_at` timestamp NULL DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `surname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `last_seen` timestamp NULL DEFAULT NULL,
+  `is_guest` tinyint(1) NOT NULL DEFAULT '0',
+  `is_superuser` tinyint(1) NOT NULL DEFAULT '0',
+  `timezone_id` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  UNIQUE KEY `users_login_unique` (`username`),
+  KEY `users_activation_code_index` (`activation_code`),
+  KEY `users_reset_password_code_index` (`reset_password_code`),
+  KEY `users_login_index` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+LOCK TABLES `users` WRITE;
+INSERT INTO `users` VALUES (1,'Vladimir Gerasimov','gerkarasta@gmail.com','$2y$10$ixziDHeoz2TzLuldFYdequiwqwBzp47eEPlo4FRm.IofQeHaP7nQu',NULL,'$2y$10$nrpEweAemAup6eWZvM.oKOcvFbbTVqzsMh79LjvWnD79eSrF98jpO',NULL,NULL,1,'2017-01-15 11:53:12','2017-01-15 11:53:14','2017-01-15 11:53:12','2017-01-15 17:57:52','gerkarasta@gmail.com','',NULL,'2017-01-15 18:57:56',0,0,1);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+--
+-- Table structure for table `users_groups`
+--
+
+DROP TABLE IF EXISTS `users_groups`;
+CREATE TABLE `users_groups` (
+  `user_id` int(10) unsigned NOT NULL,
+  `user_group_id` int(10) unsigned NOT NULL,
+  `role_id` int(11) NOT NULL DEFAULT '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users_groups`
+--
+
+
+/*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
+LOCK TABLES `users_groups` WRITE;
+INSERT INTO `users_groups` VALUES (1,2,0,1);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+

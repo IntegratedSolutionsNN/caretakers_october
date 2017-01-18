@@ -1,0 +1,31 @@
+title = "Личный кабинет"
+url = "/lk"
+layout = "octaskin"
+is_hidden = 0
+child_of = "mey_no_parent"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[userui profile]
+user = "{{ :user }}"
+
+[session]
+security = "user"
+redirect = "signin"
+==
+<section id="lt-header" class="lt-section lt-section-fullwidth section">
+  <div class="lt-container container">
+    <div class="lt-content lt-header-content">
+      {% partial "pages-about/header" %}
+    </div>
+  </div>
+</section>
+
+<section id="lt-mainpage" class="lt-section section">
+  <div class="lt-container container">
+    <div class="lt-content lt-mainpage-content">
+      {% partial 'plugin-userextended/profile' %}
+    </div>
+  </div>
+</section>
