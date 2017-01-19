@@ -1,0 +1,43 @@
+1484584457a:1:{s:13:"community.htm";a:14:{s:8:"fileName";s:13:"community.htm";s:7:"content";s:727:"title = "Общение"
+url = "/community"
+layout = "octaskin"
+is_hidden = 0
+child_of = "mey_no_parent"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[forumChannels]
+memberPage = "community"
+channelPage = "channel"
+topicPage = "community"
+==
+<section id="lt-header" class="lt-section lt-section-fullwidth section">
+  <div class="lt-container container">
+    <div class="lt-content lt-header-content">
+      {% partial "pages-about/header" %}
+    </div>
+  </div>
+</section>
+
+<section id="lt-mainpage" class="lt-section section">
+  <div class="lt-container container">
+    <div class="lt-content lt-mainpage-content">
+        {% component 'forumChannels' %}
+    </div>
+  </div>
+</section>";s:5:"mtime";i:1484517278;s:6:"markup";s:458:"<section id="lt-header" class="lt-section lt-section-fullwidth section">
+  <div class="lt-container container">
+    <div class="lt-content lt-header-content">
+      {% partial "pages-about/header" %}
+    </div>
+  </div>
+</section>
+
+<section id="lt-mainpage" class="lt-section section">
+  <div class="lt-container container">
+    <div class="lt-content lt-mainpage-content">
+        {% component 'forumChannels' %}
+    </div>
+  </div>
+</section>";s:4:"code";N;s:5:"title";s:14:"Общение";s:3:"url";s:10:"/community";s:6:"layout";s:8:"octaskin";s:9:"is_hidden";s:1:"0";s:8:"child_of";s:13:"mey_no_parent";s:10:"hide_crumb";s:1:"0";s:18:"remove_crumb_trail";s:1:"0";s:14:"crumb_disabled";s:1:"0";s:13:"forumChannels";a:3:{s:10:"memberPage";s:9:"community";s:11:"channelPage";s:7:"channel";s:9:"topicPage";s:9:"community";}}}
