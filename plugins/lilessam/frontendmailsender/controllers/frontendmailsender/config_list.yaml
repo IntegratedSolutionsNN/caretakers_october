@@ -1,3 +1,0 @@
-modelClass: Rainlab\User\Models\User
-list: ~/plugins/rainlab/user/models/user/columns.yaml
-title: lilessam.frontendmailsender::lang.backend.title
