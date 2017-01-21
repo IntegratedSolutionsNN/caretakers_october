@@ -48,18 +48,13 @@ return [
 
         'sqlite' => [
             'driver'   => 'sqlite',
-            'database' => 'storage/database.sqlite',
-            'prefix'   => '',
+            'database'  => '104_53799',            'prefix'   => '',
         ],
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'port'      => 3306,
-            'database'  => 'october',
-            'username'  => 'root',
-            'password'  => '',
-            'charset'   => 'utf8',
+            'host'      => 'localhost',            'port'      => 3306,
+            'database'  => '104_53799',            'username'  => 'root',            'password'  => 'root',            'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
         ],

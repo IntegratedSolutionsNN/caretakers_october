@@ -1,0 +1,40 @@
+1484982176a:1:{s:10:"issues.htm";a:14:{s:8:"fileName";s:10:"issues.htm";s:7:"content";s:646:"title = "Трекер проблем"
+url = "/issues"
+layout = "octaskin"
+is_hidden = 0
+child_of = "mey_no_parent"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[ticket_list]
+==
+<section id="lt-header" class="lt-section lt-section-fullwidth section">
+  <div class="lt-container container">
+    <div class="lt-content lt-header-content">
+      {% partial "pages-about/header" %}
+    </div>
+  </div>
+</section>
+
+<section id="lt-mainpage" class="lt-section section">
+  <div class="lt-container container">
+    <div class="lt-content lt-mainpage-content">
+        {% component 'ticket_list' %}
+    </div>
+  </div>
+</section>";s:5:"mtime";i:1484860988;s:6:"markup";s:456:"<section id="lt-header" class="lt-section lt-section-fullwidth section">
+  <div class="lt-container container">
+    <div class="lt-content lt-header-content">
+      {% partial "pages-about/header" %}
+    </div>
+  </div>
+</section>
+
+<section id="lt-mainpage" class="lt-section section">
+  <div class="lt-container container">
+    <div class="lt-content lt-mainpage-content">
+        {% component 'ticket_list' %}
+    </div>
+  </div>
+</section>";s:4:"code";N;s:5:"title";s:27:"Трекер проблем";s:3:"url";s:7:"/issues";s:6:"layout";s:8:"octaskin";s:9:"is_hidden";s:1:"0";s:8:"child_of";s:13:"mey_no_parent";s:10:"hide_crumb";s:1:"0";s:18:"remove_crumb_trail";s:1:"0";s:14:"crumb_disabled";s:1:"0";s:11:"ticket_list";a:0:{}}}
