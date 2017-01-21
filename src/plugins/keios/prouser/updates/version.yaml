@@ -1,0 +1,11 @@
+1.0.0:
+    - Initialize plugin
+    - create_users_table.php
+    - create_throttle_table.php
+    - create_states_table.php
+    - create_countries_table.php
+    - seed_all_tables.php
+    - create_mail_blockers_table.php
+    - create_group_tables.php
+    - create_import_status_table.php
+    - seed_messages_settings.php

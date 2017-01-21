@@ -1,0 +1,7 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name: keios.prouser::lang.fields.name
+    code: keios.prouser::lang.fields.code

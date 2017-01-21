@@ -1,0 +1,17 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    is_enabled:
+        label: keios.prouser::lang.fields.enabled
+        type: checkbox
+
+    name:
+        label: keios.prouser::lang.fields.name
+        span: auto
+
+    code:
+        label: keios.prouser::lang.fields.code
+        span: auto
+        comment: keios.prouser::lang.fields.country_code

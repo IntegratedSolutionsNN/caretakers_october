@@ -1,0 +1,39 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    # Page title
+    title: keios.prouser::lang.strings.import_users
+
+    # Import List Column configuration
+    list: $/keios/prouser/models/userimport/columns.yaml
+
+    # Import Form Field configuration
+    form: $/keios/prouser/models/userimport/fields.yaml
+
+    # Import Model class
+    modelClass: Keios\ProUser\Models\UserImport
+
+    # Redirect when finished
+    redirect: keios/prouser/users
+
+export:
+    # Page title
+    title: keios.prouser::lang.strings.export_users
+
+#    useList: keios.prouser::lang.controllers.manage_users
+    # Output file name
+    fileName: users.csv
+
+    # Export List Column configuration
+    list: $/keios/prouser/models/userexport/columns.yaml
+
+    # Export Model class
+    modelClass: Keios\ProUser\Models\UserExport
+
+    # Redirect when finished
+    redirect: keios/prouser/users
+
+    # Required permissions
+    # permissions: rainlab.blog.access_import_export

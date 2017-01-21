@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: keios.prouser::lang.controllers.location
+
+# Model Form Field configuration
+form: $/keios/prouser/models/country/fields.yaml
+
+# Model Class name
+modelClass: Keios\ProUser\Models\Country
+
+# Default redirect location
+defaultRedirect: keios/prouser/locations
+
+# Create page
+create:
+    title: keios.prouser::lang.controllers.create_location
+    redirect: keios/prouser/locations/update/:id
+    redirectClose: keios/prouser/locations
+
+# Update page
+update:
+    title: keios.prouser::lang.controllers.edit_location
+    redirect: keios/prouser/locations
+    redirectClose: keios/prouser/locations
+
+# Preview page
+preview:
+    title: Preview Locations

@@ -1,0 +1,17 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+  name:
+    label: keios.prouser::lang.fields.name
+    searchable: true
+
+  created_at:
+    label: keios.prouser::lang.fields.created
+    type: date
+
+  updated_at:
+    label: keios.prouser::lang.fields.updated
+    type: date

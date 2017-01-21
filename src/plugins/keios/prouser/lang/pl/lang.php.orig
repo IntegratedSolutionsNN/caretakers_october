@@ -1,0 +1,468 @@
+<?php
+
+return [
+<<<<<<< HEAD
+    'app' => [
+        'name' => 'ProUser',
+        'description' => 'Zaawansowany system obsługi użytkowników.',
+        'label' => 'Użytkownicy',
+        'side-label' => 'Wszyscy',
+        'groups' => 'Grupy',
+        'user-settings' => 'Ustawienia użytkownika',
+        'user-settings-description' => 'Zarządzaj ustawieniami użytkownika.',
+        'user-category' => 'Użytkownicy',
+        'location-label' => 'Lokacje',
+        'location-description' => 'Zarządzaj dostępnymi krajami i regionami.',
+        'category' => 'Użytkownicy',
+        'none-drop' => '- brak -',
+        'links' => 'Linki'
+    ],
+
+    'account-component' => [
+        'name' => 'Konto',
+        'description' => 'Wyświetla ustawienia użytkownika.',
+        'redirect-title' => 'Przenieś do:',
+        'redirect-description' => 'Strona, która powinna się pojawić po aktualizacji, logowaniu lub rejestracji.',
+        'paramcode-title' => 'Parametr kodu aktywacji',
+        'paramcode-description' => 'Ścieżka URL, używana do przyjmowania kodu aktywacyjnego (/:code?)',
+    ],
+
+    'messages-component' => [
+        'name' => 'Wiadomości',
+        'description' => 'Wiadomości od wtyczki ProUser.'
+    ],
+
+    'register-component' => [
+        'name' => 'Formularz Rejestracji',
+        'description' => 'Wyświetla formularz rejestracji',
+        'target-title' => 'Adres AJAX',
+        'target-description' => 'Wybierz stronę z komponentem Konto, do której będą wysyłane requesty AJAX.',
+        'redirect-title' => 'Przenieś do',
+        'redirect-description' => 'Strona, która powinna się wyświetlić po rejestracji. Jeśli puste - używana jest wartość z komponentu Konto.',
+    ],
+
+    'reset-password-component' => [
+        'name' => 'Resetuj Hasło',
+        'description' => 'Formularz przypominania hasłą.',
+        'paramcode-title' => 'Parametr kodu resetu',
+        'paramcode-description' => 'Scieżka URL, używana do przyjmowania kodu resetowania hasła (:/code?)',
+    ],
+
+    'session-component' => [
+        'name' => 'Sesja',
+        'description' => 'Manager sesji użytkownika',
+        'security-title' => 'Zezwalaj tylko',
+        'security-description' => 'Określa kto może wyświetlać stronę.',
+        'permission-title' => 'Specjalne uprawnienia',
+        'permission-description' => 'Strona będzie wyświetlana tylko użytkownikom ze specjalnymi uprawnieniami.',
+        'redirect-title' => 'Przenieś do',
+        'redirect-description' => 'Strona błędu 404.',
+        'flash-title' => 'Wyświetlanie wiadomość flash o uprawnieniach?',
+        'flash-description' => 'Pokaże wiadomość flash na temat uprawnień u góry ekranu.',
+    ],
+
+    'signin-component' => [
+        'name' => 'Logowanie',
+        'description' => 'Wyświetla formularz logowania',
+        'target-title' => 'Adres AJAX',
+        'target-description' => 'Wybierz stronę z komponentem Konto, do której będą wysyłane requesty AJAX.',
+        'redirect-title' => 'Przenieś do',
+        'redirect-description' => 'Strona, która powinna się wyświetlić po zalogowaniu. Jeśli puste - używana jest wartość z komponentu Konto.',
+
+    ],
+
+    'flash' => [
+        'forbidden' => 'Nie możesz wyświetlić tej strony!!',
+        'hello' => 'Witaj, ',
+        'check-email' => 'Sprawdź swój e-mail, aby kontynuować procedurę rejestracji.',
+        'invalid-code' => 'Niewłaściwy kod aktywacji',
+        'user-not-found' => 'Nie znaleziono użytkownika.',
+        'activation-success' => 'Konto jest teraz aktywne!',
+        'settings-saved' => 'Ustawienia zapisane poprawnie!',
+        'you-must-login' => 'Strona tylko dla zalogowanych użytkoników.',
+        'already-active' => 'Twoje konto jest już aktywne!',
+        'email-sent' => 'E-mail aktywacyjny został wysłany na Twój adres e-mail.',
+
+    ],
+
+    'controllers' => [
+        'confirm' => 'Na pewno?',
+        'group' => 'Grupa',
+        'groups' => 'Grupy',
+        'new-group' => 'Nowa grupa',
+        'delete' => 'Usuń',
+        'creating-group' => 'Tworzenie grup...',
+        'creating-location' => 'Tworzenie lokacji...',
+        'creating-user' => 'Tworzenie użytkownika...',
+        'create' => 'Stwórz',
+        'create-and-close' => 'Stwórz i zamknij',
+        'cancel' => 'Anuluj',
+        'return-groups' => 'Powrót do listy grup',
+        'return-locations' => 'Powrót do listy lokacji',
+        'return-users' => 'Powrót do listy użytkowników',
+        'save' => 'Zapisz',
+        'save-and-close' => 'Zapisz i zamknij',
+        'saving-role' => 'Zapisywanie Uprawnień...',
+        'saving-location' => 'Zapisywanie Lokacji...',
+        'saving-user' => 'Zapisywanie Użytkownika...',
+        'hide-disabled' => 'Ukryj wyłączone',
+        'location' => 'Lokacja',
+        'locations' => 'Lokacje',
+        'create-location' => 'Stwórz lokację',
+        'edit-location' => 'Edytuj lokację',
+        'preview-locations' => 'Podgląd lokacji',
+        'manage-locations' => 'Zarządzaj lokacjami',
+        'state' => 'Region',
+        'new-user' => 'Nowy użytkownik',
+        'user' => 'Użytkownik',
+        'users' => 'Użytkownicy',
+        'manage-users' => 'Zarządzaj użytkownikami',
+        'or' => 'lub',
+        'profile' => 'Profil',
+        'user-not-active' => 'Użytkownik nieaktywny!',
+        'user-not-active-desc' => 'Użytkownik ma nieaktywne konto i nie może się logować.',
+        'user-activate' => 'Aktywuj użytkownika ręcznie',
+        'user-activate-confirm' => 'Czy na pewno aktywować użytkownika?',
+        'activating' => 'Aktywacja...',
+        'user-delete-confirm' => 'Czy na pewno usunąć tego użytkownika?',
+        'user-deleting' => 'Usuwanie użytkownika...'
+    ],
+
+    'fields' => [
+        'name' => 'Nazwa',
+        'code' => 'Kod',
+        'enabled' => 'Włączone',
+        'country-code' => 'Wprowadź unikalny kod dla tego kraju',
+        'created' => 'Stworzono',
+        'updated' => 'Zaktualizowano',
+        'state-name' => 'Wprowadź wyświetlną nazwę dla tego regionu.',
+        'state-code' => 'Wprowadź unikalny kod dla tego regionu.',
+        'id' => 'ID',
+        'first-name' => 'Imię',
+        'last-name' => 'Nazwisko',
+        'email' => 'E-mail',
+        'registered' => 'Zarejstrowany',
+        'country' => 'Kraj',
+        'state' => 'Region',
+        'account' => 'Konto',
+        'username' => 'Nazwa użytkownika',
+        'reset-password' => 'Resetuj hasło',
+        'reset-password-desc' => 'Aby zresetować hasło tego użytkownika, wprowadź je powyżej.',
+        'avatar' => 'Awatar',
+        'groups' => 'Grupy',
+        'is-blocked' => 'Zablokowany?',
+        'toggle-block' => 'Zaznacz aby zablokować użytkownikowi dostęp do portalu',
+        'confirm-password' => 'Potwierdź hasło',
+        'confirm-password-desc' => 'Wprowadź hasło ponownie, aby je potwierdzić.',
+        'select-state' => '-- wybierz region --',
+        'select-country' => '-- wybierz kraj --',
+        'profile' => 'Profil'
+    ],
+
+
+    'location' => [
+        'new' => 'Nowa lokacja',
+    ],
+
+    'locations' => [
+        'enabled_label' => "Włączona",
+        'enabled_help' => "Wyłączone lokacje są niewidoczne we frontendzie.",
+        'enable_or_disable_title' => "Włącz lub wyłącz lokacje",
+        'enable_or_disable' => 'Włącz lub wyłącz',
+        'selected_amount' => 'Wybranych lokacji: :amount',
+        'enable_success' => "Lokacje włączone poprawnie.",
+        'disable_success' => "Lokacje wyłączone poprawnie.",
+    ],
+
+    'settings' => [
+        'activation_tab' => 'Aktywacja',
+        'location_tab' => 'Lokacja',
+        'signin_tab' => 'Logowanie',
+        'activate_mode' => 'Tryb aktywacji',
+        'activate_mode_comment' => 'Wybierz jak powinien być aktywowany użytkownik.',
+        'activate_mode_auto' => 'Automatyczny',
+        'activate_mode_auto_comment' => 'Użytkownicy są aktywni zaraz po rejestracji.',
+        'activate_mode_user' => 'Użytkownika',
+        'activate_mode_user_comment' => 'Użytkownik aktywuje swoje konto za pomocą linka aktywacyjnego.',
+        'activate_mode_admin' => 'Administratora',
+        'activate_mode_admin_comment' => 'Tylko administrator może aktywować użytkownika.',
+        'welcome_template' => 'Szablon powitalny',
+        'welcome_template_comment' => 'Szablon wiadomości wysyłanej użytkowniku po aktywacji konta.',
+        'require_activation' => 'Konto wymaga aktywacji',
+        'require_activation_comment' => 'Użytkownicy muszą mieć aktywne konta przed zalogowaniem.',
+        'default_country' => 'Domyślny kraj',
+        'default_country_comment' => 'Domyślny kraj, na wypadek jeśli użytkownik nie wybierze lokacji.',
+        'default_state' => 'Domyślny region',
+        'default_state_comment' => 'Domyślny region, na wypadek jeśli użytkownik nie wybierze lokacji.',
+        'use_throttle' => 'Blokada prób',
+        'use_throttle_comment' => 'Powtarzalne, nieudane logowania zablokują konto użytkownika.',
+        'login_attribute' => 'Atrybut loginu',
+        'login_attribute_comment' => 'Wybierz pole, które będzie służyło jako login użytkownika.',
+        'no_mail_template' => 'Nie wysyłaj powiadomień',
+        'hint_templates' => 'Możesz zmienić szablon w menu Poczta -> Szablony Poczty w Ustawieniach.',
+    ],
+    'login' => [
+        'attribute_email' => 'Email',
+        'attribute_username' => 'Nazwa użytkownika',
+    ],
+    'validation' => [
+        'required' => 'Pole :attribute jest wymagane.',
+        'email' => 'Pole :attribute musi zawierać poprawny adres e-mail.',
+        'between' => 'Pole :attribute musi mieć długość pomiędzy :min a :max.',
+        'min' => 'Pole :attribute musi mieć conajmniej :min znaków.'
+    ],
+    'messages-componet' => [
+        'login' => 'Twoje dane logowania są niepoprawne. Spróbuj ponownie'
+    ]
+=======
+'app' => [
+'name' => 'ProUser',
+'description' => 'Zaawansowany system obsługi użytkowników.',
+'label' => 'Użytkownicy',
+'side-label' => 'Wszyscy',
+'groups' => 'Grupy',
+'user-settings' => 'Ustawienia użytkownika',
+'user-settings-description' => 'Zarządzaj ustawieniami użytkownika.',
+'user-category' => 'Użytkownicy',
+'location-label' => 'Lokacje',
+'location-description' => 'Zarządzaj dostępnymi krajami i regionami.',
+'category' => 'Użytkownicy',
+'none-drop' => '- brak -',
+'links' => 'Linki'
+],
+
+'account-component' => [
+'name' => 'Konto',
+'description' => 'Wyświetla ustawienia użytkownika.',
+'redirect-title' => 'Przenieś do:',
+'redirect-description' => 'Strona, która powinna się pojawić po aktualizacji, logowaniu lub rejestracji.',
+'paramcode-title' => 'Parametr kodu aktywacji',
+'paramcode-description' => 'Ścieżka URL, używana do przyjmowania kodu aktywacyjnego (/:code?)',
+],
+
+'messages-component' => [
+'name' => 'Wiadomości',
+'description' => 'Wiadomości od wtyczki ProUser.'
+],
+
+'register-component' => [
+'name' => 'Formularz Rejestracji',
+'description' => 'Wyświetla formularz rejestracji',
+'target-title' => 'Adres AJAX',
+'target-description' => 'Wybierz stronę z komponentem Konto, do której będą wysyłane requesty AJAX.',
+'redirect-title' => 'Przenieś do',
+'redirect-description' => 'Strona, która powinna się wyświetlić po rejestracji. Jeśli puste - używana jest wartość z komponentu Konto.',
+],
+
+'reset-password-component' => [
+'name'        => 'Resetuj Hasło',
+'description' => 'Formularz przypominania hasłą.',
+'paramcode-title'       => 'Parametr kodu resetu',
+'paramcode-description' => 'Scieżka URL, używana do przyjmowania kodu resetowania hasła (:/code?)',
+],
+
+'session-component' => [
+'name' => 'Sesja',
+'description' => 'Manager sesji użytkownika',
+'security-title' => 'Zezwalaj tylko',
+'security-description' => 'Określa kto może wyświetlać stronę.',
+'permission-title' => 'Specjalne uprawnienia',
+'permission-description' => 'Strona będzie wyświetlana tylko użytkownikom ze specjalnymi uprawnieniami.',
+'redirect-title' => 'Przenieś do',
+'redirect-description' => 'Strona błędu 404.',
+'flash-title' => 'Wyświetlanie wiadomość flash o uprawnieniach?',
+'flash-description' => 'Pokaże wiadomość flash na temat uprawnień u góry ekranu.',
+],
+
+'signin-component' => [
+'name' => 'Logowanie',
+'description' => 'Wyświetla formularz logowania',
+'target-title' => 'Adres AJAX',
+'target-description' => 'Wybierz stronę z komponentem Konto, do której będą wysyłane requesty AJAX.',
+'redirect-title' => 'Przenieś do',
+'redirect-description' => 'Strona, która powinna się wyświetlić po zalogowaniu. Jeśli puste - używana jest wartość z komponentu Konto.',
+
+],
+
+'flash' => [
+'forbidden' => 'Nie możesz wyświetlić tej strony!!',
+'hello' => 'Witaj, ',
+'check-email' => 'Sprawdź swój e-mail, aby kontynuować procedurę rejestracji.',
+'invalid-code' => 'Niewłaściwy kod aktywacji',
+'user-not-found' => 'Nie znaleziono użytkownika.',
+'activation-success' => 'Konto jest teraz aktywne!',
+'settings-saved' => 'Ustawienia zapisane poprawnie!',
+'you-must-login' => 'Strona tylko dla zalogowanych użytkoników.',
+'already-active' => 'Twoje konto jest już aktywne!',
+'email-sent' => 'E-mail aktywacyjny został wysłany na Twój adres e-mail.',
+
+],
+
+'controllers' => [
+'confirm' => 'Na pewno?',
+'group' => 'Grupa',
+'groups' => 'Grupy',
+'new-group' => 'Nowa grupa',
+'delete' => 'Usuń',
+'creating-group' => 'Tworzenie grup...',
+'creating-location' => 'Tworzenie lokacji...',
+'creating-user' => 'Tworzenie użytkownika...',
+'create' => 'Stwórz',
+'create-and-close' => 'Stwórz i zamknij',
+'cancel' => 'Anuluj',
+'return-groups' => 'Powrót do listy grup',
+'return-locations' => 'Powrót do listy lokacji',
+'return-users' => 'Powrót do listy użytkowników',
+'save' => 'Zapisz',
+'save-and-close' => 'Zapisz i zamknij',
+'saving-role' => 'Zapisywanie Uprawnień...',
+'saving-location' => 'Zapisywanie Lokacji...',
+'saving-user' => 'Zapisywanie Użytkownika...',
+'hide-disabled' => 'Ukryj wyłączone',
+'location' => 'Lokacja',
+'locations' => 'Lokacje',
+'create-location' => 'Stwórz lokację',
+'edit-location' => 'Edytuj lokację',
+'preview-locations' => 'Podgląd lokacji',
+'manage-locations' => 'Zarządzaj lokacjami',
+'state' => 'Region',
+'new-user' => 'Nowy użytkownik',
+'user' => 'Użytkownik',
+'users' => 'Użytkownicy',
+'manage-users' => 'Zarządzaj użytkownikami',
+'or' => 'lub',
+'profile' => 'Profil',
+'user-not-active' => 'Użytkownik nieaktywny!',
+'user-not-active-description' => 'Użytkownik ma nieaktywne konto i nie może się logować.',
+'user-activate' => 'Aktywuj użytkownika ręcznie',
+'user-activate-confirm' => 'Czy na pewno aktywować użytkownika?',
+'activating' => 'Aktywacja...',
+'user-delete-confirm' => 'Czy na pewno usunąć tego użytkownika?',
+'user-deleting' => 'Usuwanie użytkownika...'
+],
+
+'fields' => [
+'name' => 'Nazwa',
+'code' => 'Kod',
+'enabled' => 'Włączone',
+'country-code' => 'Wprowadź unikalny kod dla tego kraju',
+'created' => 'Stworzono',
+'updated' => 'Zaktualizowano',
+'state-name' => 'Wprowadź wyświetlną nazwę dla tego regionu.',
+'state-code' => 'Wprowadź unikalny kod dla tego regionu.',
+'id' => 'ID',
+'first-name' => 'Imię',
+'last-name' => 'Nazwisko',
+'email' => 'E-mail',
+'registered' => 'Zarejstrowany',
+'country' => 'Kraj',
+'state' => 'Region',
+'account' => 'Konto',
+'username' => 'Nazwa użytkownika',
+'reset-password' => 'Resetuj hasło',
+'reset-password-desc' => 'Aby zresetować hasło tego użytkownika, wprowadź je powyżej.',
+'avatar' => 'Awatar',
+'groups' => 'Grupy',
+'is-blocked' => 'Zablokowany?',
+'toggle-block' => 'Zaznacz aby zablokować użytkownikowi dostęp do portalu',
+'confirm-password' => 'Potwierdź hasło',
+'confirm-password-desc' => 'Wprowadź hasło ponownie, aby je potwierdzić.',
+'select-state' => '-- wybierz region --',
+'select-country' => '-- wybierz kraj --',
+'profile' => 'Profil'
+],
+
+
+'location' => [
+'new' => 'Nowa lokacja',
+],
+
+'locations' => [
+'enabled_label' => "Włączona",
+'enabled_help' => "Wyłączone lokacje są niewidoczne we frontendzie.",
+'enable_or_disable_title' => "Włącz lub wyłącz lokacje",
+'enable_or_disable' => 'Włącz lub wyłącz',
+'selected_amount' => 'Wybranych lokacji: :amount',
+'enable_success' => "Lokacje włączone poprawnie.",
+'disable_success' => "Lokacje wyłączone poprawnie.",
+],
+
+'settings' => [
+'activation_tab' => 'Aktywacja',
+'location_tab' => 'Lokacja',
+'signin_tab' => 'Logowanie',
+'activate_mode' => 'Tryb aktywacji',
+'activate_mode_comment' => 'Wybierz jak powinien być aktywowany użytkownik.',
+'activate_mode_auto' => 'Automatyczny',
+'activate_mode_auto_comment' => 'Użytkownicy są aktywni zaraz po rejestracji.',
+'activate_mode_user' => 'Użytkownika',
+'activate_mode_user_comment' => 'Użytkownik aktywuje swoje konto za pomocą linka aktywacyjnego.',
+'activate_mode_admin' => 'Administratora',
+'activate_mode_admin_comment' => 'Tylko administrator może aktywować użytkownika.',
+'welcome_template' => 'Szablon powitalny',
+'welcome_template_comment' => 'Szablon wiadomości wysyłanej użytkowniku po aktywacji konta.',
+'require_activation' => 'Konto wymaga aktywacji',
+'require_activation_comment' => 'Użytkownicy muszą mieć aktywne konta przed zalogowaniem.',
+'default_country' => 'Domyślny kraj',
+'default_country_comment' => 'Domyślny kraj, na wypadek jeśli użytkownik nie wybierze lokacji.',
+'default_state' => 'Domyślny region',
+'default_state_comment' => 'Domyślny region, na wypadek jeśli użytkownik nie wybierze lokacji.',
+'use_throttle' => 'Blokada prób',
+'use_throttle_comment' => 'Powtarzalne, nieudane logowania zablokują konto użytkownika.',
+'login_attribute' => 'Atrybut loginu',
+'login_attribute_comment' => 'Wybierz pole, które będzie służyło jako login użytkownika.',
+'no_mail_template' => 'Nie wysyłaj powiadomień',
+'hint_templates' => 'Możesz zmienić szablon w menu Poczta -> Szablony Poczty w Ustawieniach.',
+
+'messages_tab' => 'Wiadomości',
+
+'general_settings' => 'Ustawienia Ogólne',
+'style_settings' => 'Ustawienia Wyglądu',
+'animation_settings' => 'Ustawienia Animacji',
+
+'message_template' => 'Szablon wiadomości',
+'message_container' => 'Szablon containera wiadomości',
+'flash_message_type' => 'Typ wiadomości Flash',
+'flash_message' => 'Wiadomość Flash',
+'ready_event' => 'Ready event',
+
+'message_template_comment' => 'Szablon dla wiadomości wtyczki ProUser',
+'message_container_comment' => 'Szablon containera wiadomości wtyczki ProUser',
+'flash_message_type_comment' => 'Typ wiadomości Flash wtyczki ProUser',
+'flash_message_comment' => 'Wiadomość flash wtyczki ProUser',
+'ready_event_comment' => 'Ready event',
+
+'success_class' => 'Klasa Success',
+'error_class' => 'Klasa Error',
+'info_class' => 'Klasa Info',
+'warning_class' => 'Klasa Warning',
+
+'success_class_comment' => 'Klasa CSS dla wiadomości typu Success',
+'error_class_comment' => 'Klasa CSS dla wiadomości typu Error',
+'info_class_comment' => 'Klasa CSS dla wiadomości typu Info',
+'warning_class_comment' => 'Klasa CSS dla wiadomości typu Warning',
+
+'message_timeout_animation_speed' => 'Szybkość timeoutu animacji wiadomości',
+'message_timeout' => 'Timeout wiadomości',
+'timeout_fadeout' => 'Timeout efektu fade out',
+
+'message_timeout_animation_speed_comment' => 'Wartość ustawia timeout dla animacji wiadomości',
+'message_timeout_comment' => 'Wartość ustawia timeout dla wiadomości',
+'timeout_fadeout_comment' => 'Włącz lub wyłącz timeout dla efektu fade out wiadomości',
+
+],
+'login' => [
+'attribute_email' => 'Email',
+'attribute_username' => 'Nazwa użytkownika',
+],
+'validation' => [
+'required' => 'Pole :attribute jest wymagane.',
+'email' => 'Pole :attribute musi zawierać poprawny adres e-mail.',
+'between' => 'Pole :attribute musi mieć długość pomiędzy :min a :max.',
+'min' => 'Pole :attribute musi mieć conajmniej :min znaków.'
+],
+'messages-componet' => [
+'login' => 'Twoje dane logowania są niepoprawne. Spróbuj ponownie'
+]
+>>>>>>> 57e87db91200023786d411d6d25e45dbc6ab8223
+];

@@ -1,0 +1,18 @@
+<br />
+<?php if($this->vars['is_migrated'] === "0"): ?>
+<p id="migrate-loading" style="display: none;"><?= trans('keios.prouser::lang.controllers.please_wait') ?></p>
+<button
+
+        type="button"
+        data-request="onManualMigrate"
+        data-request-data="close:0"
+        data-request-confirm="<?= trans('keios.prouser::lang.controllers.confirm_manual_migrate') ?>"
+        data-request-loading="#migrate-loading"
+        class="btn btn-default">
+    <?= trans('keios.prouser::lang.controllers.migrate_manually') ?>
+</button>
+<?php elseif($this->vars['is_migrated'] === "1"): ?>
+<h4><?= trans('keios.prouser::lang.controllers.user_is_migrated'); ?></h4>
+<?php else: ?>
+<h4><?= trans('keios.prouser::lang.controllers.user_not_imported'); ?></h4>
+<?php endif ?>

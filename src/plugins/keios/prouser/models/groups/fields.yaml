@@ -1,0 +1,13 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+  name:
+    label: keios.prouser::lang.fields.name
+    required: true
+    span: left fullwidth
+    size: big
+    type: text
+

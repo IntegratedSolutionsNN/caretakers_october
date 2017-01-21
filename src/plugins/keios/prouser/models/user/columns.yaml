@@ -1,0 +1,48 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    id:
+        label: keios.prouser::lang.fields.id
+        invisible: true
+
+    first_name:
+        label: keios.prouser::lang.fields.first_name
+        searchable: true
+
+    last_name:
+        label: keios.prouser::lang.fields.last_name
+        searchable: true
+
+    email:
+        label: keios.prouser::lang.fields.email
+        searchable: true
+
+    created_at:
+        label: keios.prouser::lang.fields.created
+
+    is_activated:
+        label: keios.prouser::lang.fields.is_activated
+        type: switch
+        invisible: true
+
+    is_blocked:
+        label: keios.prouser::lang.fields.is_blocked
+        type: switch
+        invisible: true
+
+    country:
+        label: keios.prouser::lang.fields.country
+        searchable: true
+        invisible: true
+        relation: country
+        select: name
+
+    state:
+        label: keios.prouser::lang.fields.state
+        searchable: true
+        invisible: true
+        relation: country
+        select: name

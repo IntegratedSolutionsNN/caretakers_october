@@ -1,0 +1,51 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('keios/prouser/groups') ?>"><?= trans('keios.prouser::lang.controllers.groups') ?></a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+     <?= Form::open(['class'=>'layout-item stretch layout-column']) ?>
+
+         <?= $this->formRender() ?>
+
+        <div class="form-buttons layout-item fix">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-hotkey="ctrl+s"
+                    data-hotkey-mac="cmd+s"
+                    data-load-indicator="<?= trans('keios.prouser::lang.controllers.creating_group') ?>"
+                    class="btn btn-primary">
+                    <?= trans('keios.prouser::lang.controllers.create') ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter"
+                    data-hotkey-mac="cmd+enter"
+                    data-load-indicator="<?= trans('keios.prouser::lang.controllers.creating_group') ?>"
+                    class="btn btn-default">
+                    <?= trans('keios.prouser::lang.controllers.create_and_close') ?>
+                </button>
+                <span class="btn-text">
+                    <?= trans('keios.prouser::lang.controllers.or') ?> <a href="<?= Backend::url('keios/prouser/groups') ?>"><?= trans('keios.prouser::lang.controllers.cancel') ?></a>
+                </span>
+            </div>
+        </div>
+
+     <?= Form::close() ?>
+
+<?php else: ?>
+    <div class="padded-container">
+        <div class="control-breadcrumb">
+            <?= Block::placeholder('breadcrumb') ?>
+        </div>
+        <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+        <p><a href="<?= Backend::url('keios/prouser/groups') ?>" class="btn btn-default"><?= trans('keios.prouser::lang.controllers.return_groups') ?></a></p>
+    </div>
+<?php endif ?>

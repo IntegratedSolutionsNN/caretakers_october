@@ -1,0 +1,23 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+    id: id
+    email: email
+    first_name: name
+    last_name: surname
+    street: street
+    house_number: house_number
+    flat_number: flat_number
+    city: city
+    zip: zip_code
+    country: country
+    phone: phone_number
+    company_name: company_name
+    register_number: register_number
+    vat_number: vat_number
+    is_company: is_company
+    wants_invoice: wants_invoice
+    is_blocked: is_blocked
+    is_activated: is_active

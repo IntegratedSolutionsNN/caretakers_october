@@ -1,0 +1,12 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    update_existing:
+        label: keios.prouser::lang.strings.update_existing
+        comment: keios.prouser::lang.strings.update_existing_desc
+        type: checkbox
+        default: true
+        span: left

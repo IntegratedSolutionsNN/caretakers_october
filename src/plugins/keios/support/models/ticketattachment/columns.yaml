@@ -1,0 +1,31 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+  ticket_id:
+    label: keios.support::lang.fields.ticket_id
+    searchable: true
+
+  file_name:
+    label: keios.support::lang.fields.file_name
+    searchable: true
+
+  file_path:
+    label: keios.support::lang.fields.file_path
+    searchable: true
+
+  file_size:
+    label: keios.support::lang.fields.file_size
+    searchable: false
+
+  created_at:
+    label: keios.support::lang.fields.created_at
+    type: date
+    invisible: true
+
+  updated_at:
+    label: keios.support::lang.fields.updated_at
+    type: date
+    invisible: true

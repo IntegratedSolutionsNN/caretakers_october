@@ -1,0 +1,33 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+columns:
+    hash_id:
+        label: keios.support::lang.fields.number
+    priority:
+        label: keios.support::lang.fields.priority
+        relation: priority
+        valueFrom: name
+    status:
+        label: keios.support::lang.fields.status
+        relation: status
+        valueFrom: name
+    user:
+        label: keios.support::lang.fields.assigned_user
+        relation: user
+        valueFrom: email
+    hash_id:
+        label: keios.support::lang.fields.hash_id
+    creator:
+        label: keios.support::lang.fields.ticket_creator
+        relation: creator
+        valueFrom: email
+    category:
+        label: keios.support::lang.fields.category
+        relation: category
+        valueFrom: name
+    created_at:
+        label: keios.support::lang.fields.created_at
+    updated_at:
+        label: keios.support::lang.fields.updated_at

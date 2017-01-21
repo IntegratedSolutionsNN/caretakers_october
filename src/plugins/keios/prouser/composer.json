@@ -1,0 +1,12 @@
+{
+    "name": "keios/prouser",
+    "description": "User support for OctoberCMS",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Keios Solutions",
+            "email": "info@keios.eu"
+        }
+    ],
+    "require": {}
+}

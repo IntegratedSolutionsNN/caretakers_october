@@ -1,0 +1,10 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+states:
+    label: keios.prouser::lang.controllers.state
+    list: $/keios/prouser/models/state/columns.yaml
+    form: $/keios/prouser/models/state/fields.yaml
+    # toolbar:
+    #     buttons: relation_toolbar

@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: keios.prouser::lang.controllers.group
+form: $/keios/prouser/models/groups/fields.yaml
+modelClass: Keios\ProUser\Models\Group
+defaultRedirect: keios/prouser/groups
+
+create:
+    redirect: keios/prouser/groups/update/:id
+    redirectClose: keios/prouser/groups
+
+update:
+    redirect: keios/prouser/groups
+    redirectClose: keios/prouser/groups

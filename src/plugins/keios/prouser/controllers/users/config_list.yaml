@@ -1,0 +1,19 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+title: keios.prouser::lang.controllers.manage_users
+list: $/keios/prouser/models/user/columns.yaml
+modelClass: Keios\ProUser\Models\User
+recordUrl: keios/prouser/users/update/:id
+noRecordsMessage: backend::lang.list.no_records
+recordsPerPage: 20
+showCheckboxes: true
+showSetup: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: backend::lang.list.search_prompt
+
+
+

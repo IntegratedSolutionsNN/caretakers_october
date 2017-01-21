@@ -1,0 +1,60 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li>
+        <a href="<?= Backend::url('keios/prouser/locations') ?>"><?= trans('keios.prouser::lang.controllers.locations') ?></a>
+    </li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+<?= Form::open(['class'=>'layout-item stretch layout-column']) ?>
+
+<?= $this->formRender() ?>
+
+<?= $this->relationRender('states') ?>
+
+<div class="form-buttons layout-item fix">
+    <div class="loading-indicator-container">
+        <button
+                type="submit"
+                data-request="onSave"
+                data-request-data="redirect:0"
+                data-hotkey="ctrl+s, cmd+s"
+                data-load-indicator="<?= trans('keios.prouser::lang.controllers.saving_location') ?>"
+                class="btn btn-primary">
+            <?= trans('keios.prouser::lang.controllers.save') ?>
+        </button>
+        <button
+                type="button"
+                data-request="onSave"
+                data-request-data="close:1"
+                data-hotkey="ctrl+enter, cmd+enter"
+                data-load-indicator="<?= trans('keios.prouser::lang.controllers.saving_location') ?>"
+                class="btn btn-default">
+            <?= trans('keios.prouser::lang.controllers.save_and_close') ?>
+        </button>
+        <button
+                type="button"
+                class="oc-icon-trash-o btn-icon danger pull-right"
+                data-request="onDelete"
+                data-load-indicator="<?= trans('keios.prouser::lang.controllers.deleting_location') ?>"
+                data-request-confirm="<?= trans('keios.prouser::lang.controllers.confirm_delete_location') ?>">
+        </button>
+                <span class="btn-text">
+                    <?= trans('keios.prouser::lang.controllers.or') ?> <a
+                            href="<?= Backend::url('keios/prouser/locations') ?>"><?= trans('keios.prouser::lang.controllers.cancel') ?></a>
+                </span>
+    </div>
+</div>
+
+<?= Form::close() ?>
+
+<?php else: ?>
+
+<p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<p><a href="<?= Backend::url('keios/prouser/locations') ?>"
+      class="btn btn-default"><?= trans('keios.prouser::lang.controllers.return_locations') ?></a></p>
+
+<?php endif ?>

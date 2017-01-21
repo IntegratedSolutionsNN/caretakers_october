@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: keios.prouser::lang.controllers.user
+form: $/keios/prouser/models/user/fields.yaml
+modelClass: Keios\ProUser\Models\User
+defaultRedirect: keios/prouser/users
+
+create:
+    redirect: keios/prouser/users/update/:id
+    redirectClose: keios/prouser/users
+
+update:
+    redirect: keios/prouser/users
+    redirectClose: keios/prouser/users

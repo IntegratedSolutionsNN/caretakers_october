@@ -1,0 +1,16 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+title: keios.prouser::lang.controllers.groups
+list: $/keios/prouser/models/groups/columns.yaml
+modelClass: Keios\ProUser\Models\Group
+recordUrl: keios/prouser/groups/update/:id
+noRecordsMessage: backend::lang.list.no_records
+recordsPerPage: 20
+showCheckboxes: yes
+
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: backend::lang.list.search_prompt

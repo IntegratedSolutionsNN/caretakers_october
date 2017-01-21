@@ -1,0 +1,17 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    author:
+        label: keios.support::lang.fields.author
+        searchable: true
+    content:
+        label: keios.support::lang.fields.comment
+        type: partial
+        path: ~/plugins/keios/support/controllers/tickets/_comment_content.htm
+    is_support:
+        label: keios.support::lang.fields.is_support
+        type: switch
+    created_at:
+        label: keios.support::lang.fields.created_at

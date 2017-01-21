@@ -1,0 +1,13 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: keios.prouser::lang.fields.name
+        span: auto
+        commentAbove: keios.prouser::lang.fields.state_name
+    code:
+        label: keios.prouser::lang.fields.code
+        span: auto
+        commentAbove: keios.prouser::lang.fields.state_code

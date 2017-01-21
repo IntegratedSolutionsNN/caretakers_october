@@ -1,0 +1,41 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: $/keios/prouser/models/country/columns.yaml
+
+# Model Class name
+modelClass: Keios\ProUser\Models\Country
+
+# List Title
+title: keios.prouser::lang.controllers.manage_locations
+
+# Link URL for each record
+recordUrl: keios/prouser/locations/update/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 20
+
+# Default sorting column
+defaultSort:
+    column: name
+    direction: asc
+
+# Display checkboxes next to each record
+showCheckboxes: true
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: list_toolbar
+
+    # Search widget configuration
+    search:
+        prompt: backend::lang.list.search_prompt
+
+# Filter widget configuration
+filter: config_filter.yaml

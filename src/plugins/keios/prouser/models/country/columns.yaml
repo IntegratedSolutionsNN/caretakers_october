@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: keios.prouser::lang.fields.name
+        searchable: true
+
+    code:
+        label: keios.prouser::lang.fields.code
+        searchable: true
+
+    is_enabled:
+        label: keios.prouser::lang.fields.enabled
+        type: switch

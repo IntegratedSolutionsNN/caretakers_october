@@ -1,0 +1,70 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+tabs:
+    fields:
+
+        # Require Activation
+        require_activation:
+            span: auto
+            label: keios.prouser::lang.settings.require_activation
+            comment: keios.prouser::lang.settings.require_activation_comment
+            type: switch
+            tab: keios.prouser::lang.settings.activation_tab
+
+        # Activation Mode
+        activate_mode:
+            span: auto
+            commentAbove: keios.prouser::lang.settings.activate_mode_comment
+            label: keios.prouser::lang.settings.activate_mode
+            type: radio
+            tab: keios.prouser::lang.settings.activation_tab
+
+        # Welcome Template
+        welcome_template:
+            span: auto
+            label: keios.prouser::lang.settings.welcome_template
+            comment: keios.prouser::lang.settings.welcome_template_comment
+            type: dropdown
+            default: keios.prouser::mail.activate
+            tab: keios.prouser::lang.settings.activation_tab
+
+        # Hint
+        template_hint:
+            type: hint
+            path: $/keios/prouser/models/settings/_template_hint.htm
+            tab: keios.prouser::lang.settings.activation_tab
+
+        # Throttle Sign In
+        use_throttle:
+            span: auto
+            label: keios.prouser::lang.settings.use_throttle
+            comment: keios.prouser::lang.settings.use_throttle_comment
+            type: switch
+            tab: keios.prouser::lang.settings.signin_tab
+
+        # Login Attribute
+        login_attribute:
+            span: auto
+            label: keios.prouser::lang.settings.login_attribute
+            comment: keios.prouser::lang.settings.login_attribute_comment
+            type: dropdown
+            tab: keios.prouser::lang.settings.signin_tab
+
+        # Default Country
+        default_country:
+            span: left
+            label: keios.prouser::lang.settings.default_country
+            comment: keios.prouser::lang.settings.default_country_comment
+            type: dropdown
+            tab: keios.prouser::lang.settings.location_tab
+
+        # Default State
+        default_state:
+            span: right
+            label: keios.prouser::lang.settings.default_state
+            comment: keios.prouser::lang.settings.default_state_comment
+            type: dropdown
+            tab: keios.prouser::lang.settings.location_tab
+            depends: default_country

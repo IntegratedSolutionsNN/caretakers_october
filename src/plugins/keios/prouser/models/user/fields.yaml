@@ -1,0 +1,87 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    first_name:
+        span: left
+        label: keios.prouser::lang.fields.first_name
+        tab: keios.prouser::lang.fields.profile
+
+    last_name:
+        span: right
+        label: keios.prouser::lang.fields.last_name
+        tab: keios.prouser::lang.fields.profile
+
+tabs:
+    fields:
+
+        email:
+            span: full
+            label: keios.prouser::lang.fields.email
+            tab: keios.prouser::lang.fields.profile
+
+        country:
+            label: keios.prouser::lang.fields.country
+            type: dropdown
+            tab: keios.prouser::lang.fields.profile
+            span: left
+            placeholder: keios.prouser::lang.fields.select_country
+
+        state:
+            label: keios.prouser::lang.fields.state
+            type: dropdown
+            tab: keios.prouser::lang.fields.profile
+            span: right
+            depends: country
+            placeholder: keios.prouser::lang.fields.select_state
+
+        username:
+            span: left
+            label: keios.prouser::lang.fields.username
+            tab: keios.prouser::lang.fields.account
+            hidden: true
+
+        password:
+            type: password
+            span: left
+            label: keios.prouser::lang.fields.reset_password
+            comment: keios.prouser::lang.fields.reset_password_desc
+            tab: keios.prouser::lang.fields.account
+
+        password_confirmation:
+            type: password
+            span: right
+            label: keios.prouser::lang.fields.confirm_password
+            comment: keios.prouser::lang.fields.confirm_password_desc
+            tab: keios.prouser::lang.fields.account
+
+        is_migrated@update:
+            label: keios.prouser::lang.fields.migration_status
+            type: partial
+            path: $/keios/prouser/controllers/users/manual_migrate.htm
+            tab: keios.prouser::lang.fields.account
+            span: left
+
+        is_blocked:
+            label: keios.prouser::lang.fields.is_blocked
+            type: switch
+            tab: keios.prouser::lang.fields.account
+            span: right
+            comment: keios.prouser::lang.fields.toggle_block
+
+        groups:
+            label: keios.prouser::lang.fields.groups
+            tab: keios.prouser::lang.fields.groups
+            type: relation
+
+secondaryTabs:
+    fields:
+
+        avatar:
+            label: keios.prouser::lang.fields.avatar
+            type: fileupload
+            mode: image
+            imageHeight: 260
+            imageWidth: 260
